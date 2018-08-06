@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import MainContainer from './MainContainer.jsx'
+import {AppContainer} from '../components/main/AppContainer.jsx'
 import reducer from './../reducers/index.js';
 import {setState} from './../action_creators/index.js';
 import utils from './../utils/appUtils.js';
@@ -13,8 +13,13 @@ const store = createStore(reducer);
 
 
 ReactDOM.render(
-    <div>
-        <MainContainer/>
-    </div>,
+    <Provider store={store}>
+        <AppContainer/>
+    </Provider>,
     document.getElementById('Root')
+);
+
+store.dispatch(setState({
+        mainInterfaceId: 'phone'
+    })
 );

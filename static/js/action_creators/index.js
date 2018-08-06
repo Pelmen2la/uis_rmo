@@ -5,16 +5,10 @@ export function setState(state) {
     };
 }
 
-export function addDot(cardId) {
-    return {
-        type: 'ADD_DOT',
-        cardId
-    };
-}
 
-export function removeDot(cardId) {
+export function changeMainInterface(interfaceId) {
     return {
-        type: 'REMOVE_DOT',
-        cardId
+        type: 'CHANGE_MAIN_INTERFACE',
+        interfaceId
     };
-}
+};

@@ -11,6 +11,8 @@
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.56",
     "@babel/preset-react": "^7.0.0-beta.56",
+    "@material-ui/core": "^1.4.3",
+    "@material-ui/icons": "^2.0.1",
     "autoprefixer": "^9.1.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
@@ -23,6 +25,9 @@
     "cssnext": "^1.8.4",
     "express": "^4.16.3",
     "immutable": "^3.8.2",
+    "install": "^0.12.1",
+    "material-ui": "^0.20.2",
+    "npm": "^6.3.0",
     "postcss": "^7.0.2",
     "postcss-each": "^0.10.0",
     "postcss-easings": "^1.0.1",
