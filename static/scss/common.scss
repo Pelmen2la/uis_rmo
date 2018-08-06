@@ -1,0 +1,14 @@
+@import './../../node_modules/reset-css/reset.css';
+@import './../../node_modules/reset-css-extended/dist/reset.css';
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    outline-width: 0;
+    &[disabled] {
+        opacity: 0.5;
+    }
+}

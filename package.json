@@ -1,0 +1,56 @@
+{
+  "name": "uis_rmo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startapp": "node app.js",
+    "webpackwatch": "webpack --progress --colors --watch --mode=development",
+    "webpackprod": "webpack --progress --colors --mode=production"
+  },
+  "dependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.56",
+    "@babel/preset-react": "^7.0.0-beta.56",
+    "autoprefixer": "^9.1.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "create-react-class": "^15.6.3",
+    "css-loader": "^1.0.0",
+    "cssnext": "^1.8.4",
+    "express": "^4.16.3",
+    "immutable": "^3.8.2",
+    "postcss": "^7.0.2",
+    "postcss-each": "^0.10.0",
+    "postcss-easings": "^1.0.1",
+    "postcss-for": "^2.1.1",
+    "postcss-import": "^12.0.0",
+    "postcss-loader": "^2.1.6",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-simple-vars": "^4.1.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "reset-css": "^4.0.1",
+    "reset-css-extended": "^1.0.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pelmen2la/uis_rmo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pelmen2la/uis_rmo/issues"
+  },
+  "homepage": "https://github.com/Pelmen2la/uis_rmo#readme"
+}
