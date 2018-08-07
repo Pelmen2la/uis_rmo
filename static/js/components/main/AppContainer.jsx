@@ -9,16 +9,14 @@ const AppContainerClass = createReactClass({
     render: function() {
         var props = this.props;
         return <div className="app-container">
-            <div>
-                <AppHeader
-                    selectedItemId={props.mainInterfaceId}
-                    onMainMenuItemClick={props.changeMainInterface}
-                />
-                <BodyContainer
-                    leftPanelState={props.leftPanelState}
-                    leftPanelChangeStateFn={props.setLeftPanelStateProperty}
-                />
-            </div>
+            <AppHeader
+                selectedItemId={props.mainInterfaceId}
+                onMainMenuItemClick={props.changeMainInterface}
+            />
+            <BodyContainer
+                leftPanelState={props.leftPanelState}
+                leftPanelChangeStateFn={props.setLeftPanelStateProperty}
+            />
         </div>
     }
 });
@@ -29,7 +27,7 @@ function mapStateToProps(state) {
         mainInterfaceId: getStateString(state, 'mainInterfaceId'),
         leftPanelState: state ? state.get('leftPanelState').toJS() : state,
         isLeftPanelRecentCallsListExpanded: getStateString(state, 'isLeftPanelRecentCallsListExpanded'),
-        recentCallsList: state && state.get('recentCallsList') ? state.get('recentCallsList').toJS() : []
+        recentCallsList: state && state.get('recentCallsList') ? state.get('recentCallsList').toJS() : [],
     };
 }
 

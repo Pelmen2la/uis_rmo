@@ -13,6 +13,10 @@ module.exports = function(app) {
         res.json(getFakeCalls(utils.getRandomInt(2, 5)));
     });
 
+    app.get('/fake_data/sales_department_calls', function(req, res) {
+        res.json(getFakeCalls(utils.getRandomInt(2, 5)));
+    });
+
     app.get('/fake_data/favorites_contacts', function(req, res) {
         res.json(getFakeFavoritesContacts(utils.getRandomInt(7, 12)));
     });

@@ -41,19 +41,41 @@
         }
     }
 
-    .recent-call-list {
+    .call-list {
         padding-left: 1em;
         li {
-            padding: 0.733333em 0; /* 11 / 15 */
             border-bottom: 1px solid $gray-lines-color2;
+            padding: 12px 0 11px;
+            * {
+                vertical-align: middle;
+            }
             img {
                 padding-right: 1em;
             }
-            .time {
-                font-size: $small-font-size;
+            span {
+                line-height: 14px;
+                &.time {
+                    font-size: $small-font-size;
+                    float: right;
+                    color: $gray-text-color;
+                    margin-right: 1.230769em; /* 16 / 13 */
+                }
+            }
+
+            .call-icon {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
                 float: right;
-                color: $gray-text-color;
-                padding-right: 1.230769em; /* 16 / 13 */
+                cursor: pointer;
+                margin: -13px 0;
+                background-image: url('/resources/icons/left_panel/phone_icon.png');
+                background-repeat: no-repeat;
+                background-position: 13px;
+                &:hover {
+                    background-image: url('/resources/icons/left_panel/phone_icon_white.png');
+                    background-color: $black-lines-color;
+                }
             }
         }
     }

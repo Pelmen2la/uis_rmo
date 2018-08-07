@@ -26,15 +26,19 @@ store.dispatch(setState({
             isRecentCallsListExpanded: true,
             recentCallList: [],
             isFavoritesContactListExpanded: true,
-            favoritesContactList: []
+            favoritesContactList: [],
+            isSalesDepartmentCallListExpanded: true,
+            salesDepartmentCallList: []
         }
     })
 );
 
 loadRecentCalls();
 loadFavoritesContacts();
+loadSalesDepartmentCalls();
 window.setInterval(loadRecentCalls, 3000);
 window.setInterval(loadFavoritesContacts, 3000);
+window.setInterval(loadSalesDepartmentCalls, 3000);
 
 function loadRecentCalls() {
     fetch('/fake_data/recent_calls').then(function(response) {
@@ -47,8 +51,16 @@ function loadRecentCalls() {
 function loadFavoritesContacts() {
     fetch('/fake_data/favorites_contacts').then(function(response) {
         return response.json();
-    }).then(function(recentCallsList) {
-        store.dispatch(setLeftPanelStateProperty('favoritesContactList', recentCallsList));
+    }).then(function(favoritesContactList) {
+        store.dispatch(setLeftPanelStateProperty('favoritesContactList', favoritesContactList));
+    })
+};
+
+function loadSalesDepartmentCalls() {
+    fetch('/fake_data/sales_department_calls').then(function(response) {
+        return response.json();
+    }).then(function(salesDepartmentCallList) {
+        store.dispatch(setLeftPanelStateProperty('salesDepartmentCallList', salesDepartmentCallList));
     })
 };
 

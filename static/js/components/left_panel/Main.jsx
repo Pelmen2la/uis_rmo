@@ -1,6 +1,6 @@
 import React from 'react';
 import TabControl from './TabControl.jsx';
-import RecentCallList from './RecentCallList.jsx';
+import CallList from './CallList.jsx';
 import FavoritesContactList from './FavoritesContactList.jsx';
 import ExpansionPanel from './../common/ExpansionPanel.jsx';
 import createReactClass from 'create-react-class';
@@ -11,17 +11,17 @@ export default createReactClass({
         const stateObj = props.stateObj || {};
         var getInnerComponents = function() {
                 if(stateObj.activeTab === 'contacts') {
-                    return getContactsTab();
+                    return getContactsTabContent();
                 } else {
-                    return '';
+                    return getPhonesTabContent();
                 }
             },
-            getContactsTab = function() {
-                return <div>
+            getContactsTabContent = function() {
+                return <React.Fragment>
                     <ExpansionPanel
                         isExpanded={stateObj.isRecentCallsListExpanded}
                         headerText="Недавние"
-                        content={<RecentCallList callList={stateObj.recentCallList}/>}
+                        content={<CallList callList={stateObj.recentCallList}/>}
                         onHeaderClick={() => props.changeStateFn('isRecentCallsListExpanded', !stateObj.isRecentCallsListExpanded)}
                     />
                     <ExpansionPanel
@@ -30,7 +30,16 @@ export default createReactClass({
                         content={<FavoritesContactList contactList={stateObj.favoritesContactList}/>}
                         onHeaderClick={() => props.changeStateFn('isFavoritesContactListExpanded', !stateObj.isFavoritesContactListExpanded)}
                     />
-                </div>
+                </React.Fragment>
+            },
+            getPhonesTabContent = function() {
+                debugger;
+                return <ExpansionPanel
+                    isExpanded={stateObj.isSalesDepartmentCallListExpanded}
+                    headerText="Отдел продаж"
+                    content={<CallList hasCallIcon={true} callList={stateObj.salesDepartmentCallList}/>}
+                    onHeaderClick={() => props.changeStateFn('isSalesDepartmentCallListExpanded', !stateObj.isSalesDepartmentCallListExpanded)}
+                />
             };
 
         return (
