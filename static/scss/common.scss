@@ -3,6 +3,7 @@
 
 $main-font-size: 15px;
 $small-font-size: 0.866666em; /* 13 / 15 */
+$semibold-text-weight: 900;
 
 $gray-lines-color: #E6E6E6;
 $gray-lines-color2: #EEEEEE;
@@ -19,5 +20,15 @@ html, body {
     outline-width: 0;
     &[disabled] {
         opacity: 0.5;
+    }
+}
+
+.expansion-panel-header {
+    cursor: pointer;
+    font-weight: $semibold-text-weight;
+    border-bottom: 1px solid $gray-lines-color;
+    padding: 1em 0;
+    img {
+        margin: 0 1em;
     }
 }

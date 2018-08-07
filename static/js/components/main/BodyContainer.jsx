@@ -5,12 +5,14 @@ import LeftPanel from './../left_panel/Main.jsx'
 export default createReactClass({
     render: function() {
         const props = this.props;
-        const recentCallsList = props.recentCallsList || [];
         return <div className="main-container">
             <LeftPanel
                 activeTab={props.leftPanelActiveTab}
-                onTabClick={props.onTabControlClick}
-                recentCallList={recentCallsList}></LeftPanel>
+                onTabClick={props.onLeftPanelTabControlClick}
+                recentCallList={props.recentCallsList || []}
+                recentCallListExanded={props.isLeftPanelRecentCallsListExpanded}
+                onRecentCallListHeaderClick={props.onLeftPanelRecentCallListHeaderClick}>
+            </LeftPanel>
         </div>
     }
 });

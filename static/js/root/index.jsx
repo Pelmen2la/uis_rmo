@@ -21,7 +21,8 @@ ReactDOM.render(
 
 store.dispatch(setState({
         mainInterfaceId: 'phone',
-        leftPanelActiveTab: 'contacts'
+        leftPanelActiveTab: 'contacts',
+        isLeftPanelRecentCallsListExpanded: true
     })
 );
 

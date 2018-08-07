@@ -18,3 +18,10 @@ export function setLeftPanelActiveTab(tabName) {
         tabName
     };
 };
+
+export function setLeftPanelRecentCallListExpanded(isExpanded) {
+    return {
+        type: 'SET_LEFT_PANEL_CALL_LIST_EXPANDED',
+        isExpanded
+    };
+};
