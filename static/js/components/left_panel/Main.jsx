@@ -10,7 +10,13 @@ export default createReactClass({
         const props = this.props;
         const stateObj = props.stateObj || {};
         var getInnerComponents = function() {
-            if(stateObj.activeTab === 'contacts') {
+                if(stateObj.activeTab === 'contacts') {
+                    return getContactsTab();
+                } else {
+                    return '';
+                }
+            },
+            getContactsTab = function() {
                 return <div>
                     <ExpansionPanel
                         isExpanded={stateObj.isRecentCallsListExpanded}
@@ -25,10 +31,7 @@ export default createReactClass({
                         onHeaderClick={() => props.changeStateFn('isFavoritesContactListExpanded', !stateObj.isFavoritesContactListExpanded)}
                     />
                 </div>
-            } else {
-                return '';
-            }
-        };
+            };
 
         return (
             <div className="left-panel">
