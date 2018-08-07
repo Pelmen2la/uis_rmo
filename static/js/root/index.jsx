@@ -24,19 +24,31 @@ store.dispatch(setState({
         leftPanelState: {
             activeTab: 'contacts',
             isRecentCallsListExpanded: true,
-            recentCallList: []
+            recentCallList: [],
+            isFavoritesContactListExpanded: true,
+            favoritesContactList: []
         }
     })
 );
 
 loadRecentCalls();
+loadFavoritesContacts();
 window.setInterval(loadRecentCalls, 3000);
+window.setInterval(loadFavoritesContacts, 3000);
 
 function loadRecentCalls() {
     fetch('/fake_data/recent_calls').then(function(response) {
         return response.json();
     }).then(function(recentCallsList) {
         store.dispatch(setLeftPanelStateProperty('recentCallList', recentCallsList));
+    })
+};
+
+function loadFavoritesContacts() {
+    fetch('/fake_data/favorites_contacts').then(function(response) {
+        return response.json();
+    }).then(function(recentCallsList) {
+        store.dispatch(setLeftPanelStateProperty('favoritesContactList', recentCallsList));
     })
 };
 

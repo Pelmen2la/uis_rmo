@@ -57,4 +57,19 @@
             }
         }
     }
+
+    .favorites-contact-list {
+        padding-left: 1em;
+        li {
+            padding: 0.733333em 0; /* 11 / 15 */
+            border-bottom: 1px solid $gray-lines-color2;
+            img {
+                padding-right: 1em;
+            }
+            .is-in-call-icon {
+                float: right;
+                padding-right: 1.230769em; /* 16 / 13 */
+            }
+        }
+    }
 }

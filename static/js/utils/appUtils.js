@@ -1,5 +1,5 @@
 function getRandomInt(min, max) {
-    return Math.floor(getRandomFloat(min, max));
+    return Math.round(getRandomFloat(min, max));
 };
 
 function getRandomFloat(min, max) {

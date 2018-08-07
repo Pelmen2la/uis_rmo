@@ -10,7 +10,11 @@ module.exports = function(app) {
     });
 
     app.get('/fake_data/recent_calls', function(req, res) {
-        res.json(getFakeCalls(5));
+        res.json(getFakeCalls(utils.getRandomInt(2, 5)));
+    });
+
+    app.get('/fake_data/favorites_contacts', function(req, res) {
+        res.json(getFakeFavoritesContacts(utils.getRandomInt(7, 12)));
     });
 };
 
@@ -62,4 +66,15 @@ function getFakeCalls(count) {
         calls.push(callData);
     }
     return calls;
+};
+
+function getFakeFavoritesContacts(count) {
+    var contacts = [];
+    for(var i = 0; i < count; i++) {
+        var contactData = getFakeEmployee();
+        contactData.isInCall = flipCoin() ? 'in_call' : 'not_in_call';
+        contactData.status = utils.getArrayRandom(['ok', 'not_ok', 'unknown']);
+        contacts.push(contactData);
+    }
+    return contacts;
 };

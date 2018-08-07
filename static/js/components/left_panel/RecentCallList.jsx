@@ -7,7 +7,7 @@ export default createReactClass({
 
         return (
             <ul className="recent-call-list">
-                {this.props.callList.map(getCallHtml)}
+                {props.callList.map(getCallHtml)}
             </ul>
         );
 
