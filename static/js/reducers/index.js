@@ -5,7 +5,11 @@ function setState(state, newState) {
 };
 
 function setMainInterfaceId(state, itemId) {
-    return setState(state, {mainInterfaceId: itemId });
+    return setState(state, { mainInterfaceId: itemId });
+};
+
+function setLeftPanelActiveTab(state, tabName) {
+    return setState(state, { leftPanelActiveTab: tabName });
 };
 
 export default function(state=Map(), action='') {
@@ -14,5 +18,7 @@ export default function(state=Map(), action='') {
             return setState(state, action.state);
         case 'CHANGE_MAIN_INTERFACE':
             return setMainInterfaceId(state, action.interfaceId);
+        case 'SET_LEFT_MENU_ACTIVE_TAB':
+            return setLeftPanelActiveTab(state, action.tabName);
   }
 };

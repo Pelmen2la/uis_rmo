@@ -16,9 +16,15 @@ function getArrayAverage(arr) {
     return arr.length ? sum / arr.length : 0;
 };
 
-export default {
+function getArrayRandom(arr) {
+    return arr[getRandomInt(0, arr.length - 1)];
+};
+
+
+module.exports = {
     getRandomFloat: getRandomFloat,
     getRandomInt: getRandomInt,
     getListAverage: getListAverage,
-    getArrayAverage: getArrayAverage
+    getArrayAverage: getArrayAverage,
+    getArrayRandom: getArrayRandom
 };

@@ -20,6 +20,22 @@ ReactDOM.render(
 );
 
 store.dispatch(setState({
-        mainInterfaceId: 'phone'
+        mainInterfaceId: 'phone',
+        leftPanelActiveTab: 'contacts'
     })
 );
+
+loadRecentCalls();
+window.setInterval(loadRecentCalls, 3000);
+
+function loadRecentCalls() {
+    fetch('/fake_data/recent_calls').then(function(response) {
+        return response.json();
+    }).then(function(recentCallsList) {
+        store.dispatch(setState({
+                recentCallsList: recentCallsList
+            })
+        );
+    })
+};
+

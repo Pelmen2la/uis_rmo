@@ -1,15 +1,8 @@
 import React from 'react';
 import Icon from './../common/Icon.jsx';
-import {withStyles} from '@material-ui/core/styles';
 import createReactClass from 'create-react-class';
 
-const styles = theme => ({
-    root: {
-        overflow: 'auto'
-    },
-});
-
-export default withStyles(styles)(createReactClass({
+export default createReactClass({
     render: function() {
         const props = this.props;
 
@@ -30,4 +23,4 @@ export default withStyles(styles)(createReactClass({
             </li>
         }
     }
-}));
+});

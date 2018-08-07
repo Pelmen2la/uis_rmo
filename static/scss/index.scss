@@ -1,1 +1,54 @@
 @import 'common.scss';
+@import 'left-panel.scss';
+
+.app-header {
+    overflow: hidden;
+    .logo {
+        font-size: 1.6em; /* 24 / 15 */
+        line-height: 2.083333em; /* 50 / 24 */
+        margin-left: 38px;
+        display: inline-block;
+        float: left;
+    }
+    .top-menu {
+        float: right;
+        text-align: center;
+        padding: 0.733333em 0 1.066666em; /* 11 / 15, 16 /15 */
+        li {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            opacity: 0.6;
+            &:not(:last-child) {
+                border-right: 2px solid $gray-lines-color;
+            }
+            img {
+                padding: 0 0.933333em; /* 14 / 15 */
+                opacity: 0.6;
+            }
+            .selector {
+                position: absolute;
+                height: 5px;
+                background-color: $black-lines-color;
+                width: 100%;
+                bottom: -1.066666em; /* 16 /15 */
+                display: none;
+            }
+            &.selected {
+                opacity: 1;
+                .selector {
+                    display: block;
+                }
+                img {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.main-container {
+    overflow: auto;
+    border-top: 2px solid $gray-lines-color;
+    min-height: 10px;
+}

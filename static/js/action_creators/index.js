@@ -5,10 +5,16 @@ export function setState(state) {
     };
 }
 
-
 export function changeMainInterface(interfaceId) {
     return {
         type: 'CHANGE_MAIN_INTERFACE',
         interfaceId
+    };
+};
+
+export function setLeftPanelActiveTab(tabName) {
+    return {
+        type: 'SET_LEFT_MENU_ACTIVE_TAB',
+        tabName
     };
 };
