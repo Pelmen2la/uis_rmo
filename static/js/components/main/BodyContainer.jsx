@@ -7,11 +7,8 @@ export default createReactClass({
         const props = this.props;
         return <div className="main-container">
             <LeftPanel
-                activeTab={props.leftPanelActiveTab}
-                onTabClick={props.onLeftPanelTabControlClick}
-                recentCallList={props.recentCallsList || []}
-                recentCallListExanded={props.isLeftPanelRecentCallsListExpanded}
-                onRecentCallListHeaderClick={props.onLeftPanelRecentCallListHeaderClick}>
+                stateObj={props.leftPanelState}
+                changeStateFn={props.leftPanelChangeStateFn}>
             </LeftPanel>
         </div>
     }

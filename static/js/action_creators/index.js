@@ -12,16 +12,11 @@ export function changeMainInterface(interfaceId) {
     };
 };
 
-export function setLeftPanelActiveTab(tabName) {
-    return {
-        type: 'SET_LEFT_MENU_ACTIVE_TAB',
-        tabName
-    };
-};
 
-export function setLeftPanelRecentCallListExpanded(isExpanded) {
+export function setLeftPanelStateProperty(propName, val) {
     return {
-        type: 'SET_LEFT_PANEL_CALL_LIST_EXPANDED',
-        isExpanded
+        type: 'SET_LEFT_PANEL_STATE_PROPERTY',
+        propName,
+        val
     };
 };

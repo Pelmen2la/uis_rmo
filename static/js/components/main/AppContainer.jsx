@@ -15,11 +15,8 @@ const AppContainerClass = createReactClass({
                     onMainMenuItemClick={props.changeMainInterface}
                 />
                 <BodyContainer
-                    leftPanelActiveTab={props.leftPanelActiveTab}
-                    onLeftPanelTabControlClick={props.setLeftPanelActiveTab}
-                    isLeftPanelRecentCallsListExpanded={props.isLeftPanelRecentCallsListExpanded}
-                    onLeftPanelRecentCallListHeaderClick={props.setLeftPanelRecentCallListExpanded}
-                    recentCallsList={props.recentCallsList}
+                    leftPanelState={props.leftPanelState}
+                    leftPanelChangeStateFn={props.setLeftPanelStateProperty}
                 />
             </div>
         </div>
@@ -30,7 +27,7 @@ const AppContainerClass = createReactClass({
 function mapStateToProps(state) {
     return {
         mainInterfaceId: getStateString(state, 'mainInterfaceId'),
-        leftPanelActiveTab: getStateString(state, 'leftPanelActiveTab'),
+        leftPanelState: state ? state.get('leftPanelState').toJS() : state,
         isLeftPanelRecentCallsListExpanded: getStateString(state, 'isLeftPanelRecentCallsListExpanded'),
         recentCallsList: state && state.get('recentCallsList') ? state.get('recentCallsList').toJS() : []
     };

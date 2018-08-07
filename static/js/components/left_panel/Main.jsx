@@ -7,13 +7,14 @@ import createReactClass from 'create-react-class';
 export default createReactClass({
     render: function() {
         const props = this.props;
+        const stateObj = props.stateObj || {};
         var getInnerComponents = function() {
-            if(props.activeTab === 'contacts') {
+            if(stateObj.activeTab === 'contacts') {
                 return <ExpansionPanel
-                    isExpanded={props.recentCallListExanded}
+                    isExpanded={stateObj.isRecentCallsListExpanded}
                     headerText="Недавние"
-                    content={<RecentCallList callList={props.recentCallList}/>}
-                    onHeaderClick={() => props.onRecentCallListHeaderClick(!props.recentCallListExanded)}
+                    content={<RecentCallList callList={stateObj.recentCallList}/>}
+                    onHeaderClick={() => props.changeStateFn('isRecentCallsListExpanded', !stateObj.isRecentCallsListExpanded)}
                 />
             } else {
                 return '';
@@ -23,8 +24,8 @@ export default createReactClass({
         return (
             <div className="left-panel">
                 <TabControl
-                    activeTab={props.activeTab}
-                    onTabClick={props.onTabClick}
+                    activeTab={stateObj.activeTab}
+                    onTabClick={(tabName) => props.changeStateFn('activeTab', tabName)}
                 />
                 {getInnerComponents()}
             </div>

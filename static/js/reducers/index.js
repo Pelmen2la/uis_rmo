@@ -8,12 +8,10 @@ function setMainInterfaceId(state, itemId) {
     return setState(state, { mainInterfaceId: itemId });
 };
 
-function setLeftPanelActiveTab(state, tabName) {
-    return setState(state, { leftPanelActiveTab: tabName });
-};
-
-function setLeftPanelRecentCallListExpanded(state, isExpanded) {
-    return setState(state, { isLeftPanelRecentCallsListExpanded: isExpanded });
+function setLeftPanelStateProperty(state, propName, val) {
+    var leftPanelState = state.get('leftPanelState').toJS();
+    leftPanelState[propName] = val;
+    return setState(state, { leftPanelState: leftPanelState });
 };
 
 export default function(state=Map(), action='') {
@@ -22,9 +20,7 @@ export default function(state=Map(), action='') {
             return setState(state, action.state);
         case 'CHANGE_MAIN_INTERFACE':
             return setMainInterfaceId(state, action.interfaceId);
-        case 'SET_LEFT_MENU_ACTIVE_TAB':
-            return setLeftPanelActiveTab(state, action.tabName);
-        case 'SET_LEFT_PANEL_CALL_LIST_EXPANDED':
-            return setLeftPanelRecentCallListExpanded(state, action.isExpanded);
+        case 'SET_LEFT_PANEL_STATE_PROPERTY':
+            return setLeftPanelStateProperty(state, action.propName, action.val);
   }
 };
