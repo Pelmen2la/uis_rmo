@@ -33,7 +33,6 @@ export default createReactClass({
                 </React.Fragment>
             },
             getPhonesTabContent = function() {
-                debugger;
                 return <ExpansionPanel
                     isExpanded={stateObj.isSalesDepartmentCallListExpanded}
                     headerText="Отдел продаж"

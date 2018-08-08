@@ -5,7 +5,6 @@ export default createReactClass({
     render: function() {
         const props = this.props;
         const callIcon = props.hasCallIcon ? getCallIcon() : '';
-        debugger;
         return (
             <ul className="call-list">
                 {props.callList.map(getCallHtml)}

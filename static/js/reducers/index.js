@@ -14,6 +14,13 @@ function setLeftPanelStateProperty(state, propName, val) {
     return setState(state, { leftPanelState: leftPanelState });
 };
 
+function setContactsPageStateProperty(state, propName, val) {
+    var contactsPageState = state.get('contactsPageState').toJS();
+    contactsPageState[propName] = val;
+    return setState(state, { contactsPageState: contactsPageState });
+};
+
+
 export default function(state=Map(), action='') {
     switch(action.type) {
         case 'SET_STATE':
@@ -22,5 +29,7 @@ export default function(state=Map(), action='') {
             return setMainInterfaceId(state, action.interfaceId);
         case 'SET_LEFT_PANEL_STATE_PROPERTY':
             return setLeftPanelStateProperty(state, action.propName, action.val);
+        case 'SET_CONTACTS_PAGE_STATE_PROPERTY':
+            return setContactsPageStateProperty(state, action.propName, action.val);
   }
 };

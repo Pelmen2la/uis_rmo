@@ -20,6 +20,10 @@ module.exports = function(app) {
     app.get('/fake_data/favorites_contacts', function(req, res) {
         res.json(getFakeFavoritesContacts(utils.getRandomInt(7, 12)));
     });
+
+    app.get('/fake_data/contacts', function(req, res) {
+        res.json(getFakeContacts(utils.getRandomInt(10, 12)));
+    });
 };
 
 function flipCoin() {
@@ -46,6 +50,8 @@ function getFakeEmployee() {
     var maleNames = ['Петр', 'Степан', 'Денис', 'Виктор', 'Уалихан', 'Алексей'],
         femaleNames = ['Свелана', 'Гузаль', 'Валерия', 'Мария', 'Анна'],
         surnames = ['Гаврилин', 'Корнеев', 'Петров', 'Иванов', 'Зверев'],
+        companyNames = ['Аврора', 'Ромашка', 'Звезда', 'ЮИС', 'Комеджик'],
+        positions = ['специалист', 'генеральный директор', 'директор', 'менеджер'],
         male = flipCoin() ? 'male' : 'female',
         name = utils.getArrayRandom(male === 'male' ? maleNames : femaleNames),
         surname = utils.getArrayRandom(surnames);
@@ -56,6 +62,8 @@ function getFakeEmployee() {
         name: name,
         surname: surname,
         phone: getRandomPhoneNumber(),
+        position: utils.getArrayRandom(positions),
+        companyName: utils.getArrayRandom(companyNames),
         id: getUid()
     }
 };
@@ -68,6 +76,20 @@ function getFakeCalls(count) {
         callData.showName = flipCoin();
         callData.time = utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9);
         calls.push(callData);
+    }
+    return calls;
+};
+
+function getFakeContacts(count) {
+    var calls = [];
+    for(var i = 0; i < count; i++) {
+        var contactData = getFakeEmployee(),
+            date = new Date();
+        date.setTime(date.getTime() - utils.getRandomInt(0 , 3) * 60 * 60 * 24 * 1000);
+        contactData.isFavourite = flipCoin();
+        contactData.avatarUrl = '';
+        contactData.date = date;
+        calls.push(contactData);
     }
     return calls;
 };

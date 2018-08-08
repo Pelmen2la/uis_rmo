@@ -4,7 +4,7 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {AppContainer} from '../components/main/AppContainer.jsx'
 import reducer from './../reducers/index.js';
-import {setState, setLeftPanelStateProperty} from './../action_creators/index.js';
+import {setState, setLeftPanelStateProperty, setContactsPageStateProperty} from './../action_creators/index.js';
 import utils from './../utils/appUtils.js';
 
 import './../../scss/index.scss'
@@ -29,6 +29,9 @@ store.dispatch(setState({
             favoritesContactList: [],
             isSalesDepartmentCallListExpanded: true,
             salesDepartmentCallList: []
+        },
+        contactsPageState: {
+            gridData: []
         }
     })
 );
@@ -36,9 +39,11 @@ store.dispatch(setState({
 loadRecentCalls();
 loadFavoritesContacts();
 loadSalesDepartmentCalls();
-window.setInterval(loadRecentCalls, 3000);
-window.setInterval(loadFavoritesContacts, 3000);
+loadContactsPageData();
+window.setInterval(loadRecentCalls, 2000);
+window.setInterval(loadFavoritesContacts, 2500);
 window.setInterval(loadSalesDepartmentCalls, 3000);
+//window.setInterval(loadContactsPageData, 3500);
 
 function loadRecentCalls() {
     fetch('/fake_data/recent_calls').then(function(response) {
@@ -61,6 +66,14 @@ function loadSalesDepartmentCalls() {
         return response.json();
     }).then(function(salesDepartmentCallList) {
         store.dispatch(setLeftPanelStateProperty('salesDepartmentCallList', salesDepartmentCallList));
+    })
+};
+
+function loadContactsPageData() {
+    fetch('/fake_data/contacts').then(function(response) {
+        return response.json();
+    }).then(function(contactsList) {
+        store.dispatch(setContactsPageStateProperty('gridData', contactsList));
     })
 };
 

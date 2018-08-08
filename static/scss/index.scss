@@ -1,5 +1,6 @@
 @import 'common.scss';
 @import 'left-panel.scss';
+@import 'contacts-page.scss';
 
 .app-header {
     overflow: hidden;
@@ -51,4 +52,8 @@
     overflow: auto;
     border-top: 2px solid $gray-lines-color;
     min-height: 10px;
+
+    > div {
+        float: left;
+    }
 }

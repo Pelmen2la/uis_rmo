@@ -16,6 +16,7 @@ const AppContainerClass = createReactClass({
             <BodyContainer
                 leftPanelState={props.leftPanelState}
                 leftPanelChangeStateFn={props.setLeftPanelStateProperty}
+                contactsPageState={props.contactsPageState}
             />
         </div>
     }
@@ -26,8 +27,7 @@ function mapStateToProps(state) {
     return {
         mainInterfaceId: getStateString(state, 'mainInterfaceId'),
         leftPanelState: state ? state.get('leftPanelState').toJS() : state,
-        isLeftPanelRecentCallsListExpanded: getStateString(state, 'isLeftPanelRecentCallsListExpanded'),
-        recentCallsList: state && state.get('recentCallsList') ? state.get('recentCallsList').toJS() : [],
+        contactsPageState: state ? state.get('contactsPageState').toJS() : state,
     };
 }
 

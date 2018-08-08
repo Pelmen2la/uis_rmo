@@ -1,0 +1,32 @@
+.contacts-page-container {
+    .simple-grid {
+        td {
+            padding: 10px 0 10px 15px;
+            border-bottom: 1px solid $gray-lines-color;
+            height: auto;
+            vertical-align: middle;
+            &:last-child {
+                padding-right: 15px;
+            }
+            &.img-cell {
+                line-height: 0;
+            }
+            &.name-cell {
+                b {
+                    font-size: $big-font-size;
+                    font-weight: $semibold-text-weight;
+                    line-height: 1.3em;
+                }
+                span {
+                    color: $gray-font-color;
+                }
+            }
+            &.date-cell {
+                color: $gray-font-color;
+            }
+        }
+        .star-icon {
+            margin: 10px 0;
+        }
+    }
+}
