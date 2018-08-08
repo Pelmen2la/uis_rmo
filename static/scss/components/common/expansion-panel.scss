@@ -1,0 +1,9 @@
+.expansion-panel-header {
+    cursor: pointer;
+    font-weight: $semibold-text-weight;
+    border-bottom: 1px solid $gray-lines-color;
+    padding: 1em 0;
+    img {
+        margin: 0 1em;
+    }
+}

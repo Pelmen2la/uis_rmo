@@ -10,11 +10,19 @@ export default createReactClass({
             <LeftPanel
                 stateObj={props.leftPanelState}
                 changeStateFn={props.leftPanelChangeStateFn}/>
-            <div className="page-content-container">
-                <ContactsPage
-                    stateObj={props.contactsPageState}
-                />
+            <div className="main-content-container">
+                {getMainPageHtml(props.mainPageId)}
             </div>
         </div>;
+
+        function getMainPageHtml(pageId) {
+            if(pageId === 'contact') {
+                return <ContactsPage
+                    stateObj={props.contactsPageState}
+                />
+            } else {
+                return '';
+            }
+        }
     }
 });

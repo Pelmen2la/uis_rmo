@@ -5,9 +5,9 @@ export function setState(state) {
     };
 }
 
-export function changeMainInterface(interfaceId) {
+export function setMainPageId(interfaceId) {
     return {
-        type: 'CHANGE_MAIN_INTERFACE',
+        type: 'SET_MAIN_PAGE_ID',
         interfaceId
     };
 };

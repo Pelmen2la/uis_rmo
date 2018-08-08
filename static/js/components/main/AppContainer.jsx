@@ -10,10 +10,11 @@ const AppContainerClass = createReactClass({
         var props = this.props;
         return <div className="app-container">
             <AppHeader
-                selectedItemId={props.mainInterfaceId}
-                onMainMenuItemClick={props.changeMainInterface}
+                selectedItemId={props.mainPageId}
+                onMainMenuItemClick={props.setMainPageId}
             />
             <BodyContainer
+                mainPageId={props.mainPageId}
                 leftPanelState={props.leftPanelState}
                 leftPanelChangeStateFn={props.setLeftPanelStateProperty}
                 contactsPageState={props.contactsPageState}
@@ -25,7 +26,7 @@ const AppContainerClass = createReactClass({
 
 function mapStateToProps(state) {
     return {
-        mainInterfaceId: getStateString(state, 'mainInterfaceId'),
+        mainPageId: getStateString(state, 'mainPageId'),
         leftPanelState: state ? state.get('leftPanelState').toJS() : state,
         contactsPageState: state ? state.get('contactsPageState').toJS() : state,
     };

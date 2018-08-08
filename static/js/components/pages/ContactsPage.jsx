@@ -6,7 +6,7 @@ export default createReactClass({
     render: function() {
         const props = this.props;
         const stateObj = props.stateObj || {};
-        return <div className="contacts-page-container">
+        return <div className="main-page-container contacts-page">
             <SimpleGrid
                 hideHeader={true}
                 columnsCfg={getGridColumnsCfg()}

@@ -15,6 +15,7 @@ export default createReactClass({
             var widthStyle = { width: 100 / tabsCfg.length + '%' };
             return tabsCfg.map((tabCfg) => {
                 var name = tabCfg.name;
+
                 return <li
                     style={widthStyle}
                     key={tabCfg.name}
@@ -29,7 +30,7 @@ export default createReactClass({
             if(tabCfg.iconUrl) {
                 return <Icon iconPath={tabCfg.iconUrl}/>
             } else {
-                return <span>{tabCfg.text}</span>
+                return <span className="tab-text">{tabCfg.text}</span>
             }
         };
     }
