@@ -31,6 +31,7 @@ export default createReactClass({
             return [
                 {
                     dataIndex: 'isFavourite',
+                    width: 20,
                     renderer: (rec, val, cellCfg) => {
                         let iconName = 'star_' + (val ? 'black' : 'empty');
                         cellCfg.className = 'img-cell';
@@ -39,6 +40,7 @@ export default createReactClass({
                 },
                 {
                     dataIndex: 'avatarUrl',
+                    width: 40,
                     renderer: (rec, val, cellCfg) => {
                         cellCfg.className = 'img-cell';
                         return <img src={'/resources/icons/contacts_page/contact_ava.png'}/>

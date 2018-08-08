@@ -1,5 +1,6 @@
 .contacts-page {
     .simple-grid {
+        width: 100%;
         td {
             padding: 10px 0 10px 15px;
             border-bottom: 1px solid $gray-lines-color;
@@ -22,6 +23,7 @@
                 }
             }
             &.date-cell {
+                text-align: right;
                 color: $gray-font-color;
             }
         }
