@@ -18,6 +18,7 @@ export default createReactClass({
         function getMainPageHtml(pageId) {
             if(pageId === 'contact') {
                 return <ContactsPage
+                    changeStateFn={props.contactsPageChangeStateFn}
                     stateObj={props.contactsPageState}
                 />
             } else {

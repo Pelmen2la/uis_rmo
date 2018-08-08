@@ -18,6 +18,7 @@ const AppContainerClass = createReactClass({
                 leftPanelState={props.leftPanelState}
                 leftPanelChangeStateFn={props.setLeftPanelStateProperty}
                 contactsPageState={props.contactsPageState}
+                contactsPageChangeStateFn={props.setContactsPageStateProperty}
             />
         </div>
     }

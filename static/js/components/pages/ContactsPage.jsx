@@ -11,7 +11,7 @@ export default createReactClass({
             <TabControl
                 tabsCfg={getTabsCfg()}
                 selectedTabName={stateObj.selectedTabName}
-                onTabClick={(tabName) => props.changeStateFn('activeTab', tabName)}
+                onTabClick={(tabName) => props.changeStateFn('selectedTabName', tabName)}
             />
             <SimpleGrid
                 hideHeader={true}
