@@ -1,4 +1,8 @@
 .contacts-page {
+    .search-input-wrapper {
+        padding: 1em;
+        border-bottom: 1px solid $gray-lines-color;
+    }
     .simple-grid {
         width: 100%;
         td {

@@ -2,6 +2,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import SimpleGrid from './../common/SimpleGrid.jsx'
 import TabControl from './../common/TabControl.jsx'
+import BigTextField from './../common/BigTextField.jsx'
 
 export default createReactClass({
     render: function() {
@@ -13,6 +14,12 @@ export default createReactClass({
                 selectedTabName={stateObj.selectedTabName}
                 onTabClick={(tabName) => props.changeStateFn('selectedTabName', tabName)}
             />
+            <div className="search-input-wrapper">
+                <BigTextField
+                    hasClearIcon={true}
+                    placeholder="Введите имя или номер..."
+                />
+            </div>
             <SimpleGrid
                 hideHeader={true}
                 columnsCfg={getGridColumnsCfg()}
