@@ -1,5 +1,5 @@
 import React from 'react';
-import TabControl from './TabControl.jsx';
+import TabControl from './../common/TabControl.jsx';
 import CallList from './CallList.jsx';
 import FavoritesContactList from './FavoritesContactList.jsx';
 import ExpansionPanel from './../common/ExpansionPanel.jsx';
@@ -9,6 +9,10 @@ export default createReactClass({
     render: function() {
         const props = this.props;
         const stateObj = props.stateObj || {};
+        const tabsCfg = [
+            { name: 'contacts', iconUrl: 'left_panel/contacts_tab_icon.png', isSelected: stateObj.activeTab == 'contacts' },
+            { name: 'calls', iconUrl: 'left_panel/calls_tab_icon.png', isSelected: stateObj.activeTab == 'calls' },
+        ];
         var getInnerComponents = function() {
                 if(stateObj.activeTab === 'contacts') {
                     return getContactsTabContent();
@@ -44,7 +48,7 @@ export default createReactClass({
         return (
             <div className="left-panel">
                 <TabControl
-                    activeTab={stateObj.activeTab}
+                    tabsCfg={tabsCfg}
                     onTabClick={(tabName) => props.changeStateFn('activeTab', tabName)}
                 />
                 {getInnerComponents()}
