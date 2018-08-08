@@ -7,11 +7,11 @@ export default createReactClass({
         const props = this.props;
         return (
             <ul className="common-tab-control">
-                {getTabs(props.tabsCfg, props.onTabClick || (() => null))}
+                {getTabs(props.tabsCfg, props.selectedTabName, props.onTabClick || (() => null))}
             </ul>
         );
 
-        function getTabs(tabsCfg, onClickHandler) {
+        function getTabs(tabsCfg, selectedTabName, onClickHandler) {
             var widthStyle = { width: 100 / tabsCfg.length + '%' };
             return tabsCfg.map((tabCfg) => {
                 var name = tabCfg.name;
@@ -20,7 +20,7 @@ export default createReactClass({
                     style={widthStyle}
                     key={tabCfg.name}
                     onClick={(e) => onClickHandler(name, e)}
-                    className={tabCfg.isSelected ? 'selected' : ''}>
+                    className={name === selectedTabName ? 'selected' : ''}>
                     {getTabInnerHtml(tabCfg)}
                     <div className="selector"></div>
                 </li>

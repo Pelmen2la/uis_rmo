@@ -22,7 +22,7 @@ ReactDOM.render(
 store.dispatch(setState({
         mainPageId: 'contact',
         leftPanelState: {
-            activeTab: 'contacts',
+            selectedTabName: 'contacts',
             isRecentCallsListExpanded: true,
             recentCallList: [],
             isFavoritesContactListExpanded: true,
@@ -31,6 +31,7 @@ store.dispatch(setState({
             salesDepartmentCallList: []
         },
         contactsPageState: {
+            selectedTabName: 'contacts',
             gridData: []
         }
     })

@@ -1,12 +1,18 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import SimpleGrid from './../common/SimpleGrid.jsx'
+import TabControl from './../common/TabControl.jsx'
 
 export default createReactClass({
     render: function() {
         const props = this.props;
         const stateObj = props.stateObj || {};
         return <div className="main-page-container contacts-page">
+            <TabControl
+                tabsCfg={getTabsCfg()}
+                selectedTabName={stateObj.selectedTabName}
+                onTabClick={(tabName) => props.changeStateFn('activeTab', tabName)}
+            />
             <SimpleGrid
                 hideHeader={true}
                 columnsCfg={getGridColumnsCfg()}
@@ -14,6 +20,13 @@ export default createReactClass({
             />
         </div>;
 
+        function getTabsCfg() {
+            return [
+                {name: 'recent', text: 'Недавние'},
+                {name: 'contacts', text: 'Контакты'},
+                {name: 'employees', text: 'Сотрудники'}
+            ];
+        };
         function getGridColumnsCfg() {
             return [
                 {

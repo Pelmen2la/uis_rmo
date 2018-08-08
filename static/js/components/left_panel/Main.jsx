@@ -10,11 +10,11 @@ export default createReactClass({
         const props = this.props;
         const stateObj = props.stateObj || {};
         const tabsCfg = [
-            { name: 'contacts', iconUrl: 'left_panel/contacts_tab_icon.png', isSelected: stateObj.activeTab == 'contacts' },
-            { name: 'calls', iconUrl: 'left_panel/calls_tab_icon.png', isSelected: stateObj.activeTab == 'calls' },
+            { name: 'contacts', iconUrl: 'left_panel/contacts_tab_icon.png' },
+            { name: 'calls', iconUrl: 'left_panel/calls_tab_icon.png' }
         ];
         var getInnerComponents = function() {
-                if(stateObj.activeTab === 'contacts') {
+                if(stateObj.selectedTabName === 'contacts') {
                     return getContactsTabContent();
                 } else {
                     return getPhonesTabContent();
@@ -49,7 +49,8 @@ export default createReactClass({
             <div className="left-panel">
                 <TabControl
                     tabsCfg={tabsCfg}
-                    onTabClick={(tabName) => props.changeStateFn('activeTab', tabName)}
+                    selectedTabName={stateObj.selectedTabName}
+                    onTabClick={(tabName) => props.changeStateFn('selectedTabName', tabName)}
                 />
                 {getInnerComponents()}
             </div>

@@ -8,8 +8,13 @@
         padding: 0.866666em 0 0.6em; /* 13 / 15, 9 / 15 */
         cursor: pointer;
         position: relative;
-        &:first-child {
+        &:not(:last-child) {
             border-right: 1px solid $gray-lines-color;
+        }
+        .tab-text {
+            color: $gray-font-color;
+            display: inline-block;
+            padding: 6px 0;
         }
         img {
             opacity: 0.6;
@@ -28,6 +33,11 @@
             }
             img {
                 opacity: 1;
+            }
+            .tab-text {
+                font-weight: $semibold-text-weight;
+                font-size: $big-font-size;
+                color: black;
             }
         }
     }
