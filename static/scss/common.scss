@@ -12,6 +12,7 @@ $gray-lines-color2: #EEEEEE;
 $black-lines-color: #585858;
 
 $main-background-color: #F5F5F5;
+$secondary-background-color: #FAFAFA;
 
 html, body {
     width: 100%;
@@ -26,10 +27,16 @@ html, body {
     }
 }
 
+b {
+    font-size: $big-font-size;
+    font-weight: $semibold-text-weight;
+    line-height: 1.3em;
+}
+
 .main-content-container {
     background-color: $main-background-color;
     padding: 20px;
-    width: 1024px;
+    width: calc(100% - 700px);
 }
 
 .main-page-container {

@@ -19,6 +19,9 @@ const AppContainerClass = createReactClass({
                 leftPanelChangeStateFn={props.setLeftPanelStateProperty}
                 contactsPageState={props.contactsPageState}
                 contactsPageChangeStateFn={props.setContactsPageStateProperty}
+                contactEditPageState={props.contactEditPageState}
+                openContactEditPageFn={props.openContactEditPage}
+                contactEditPageChangeStateFn={props.setContactsEditPageStateProperty}
             />
         </div>
     }
@@ -30,6 +33,7 @@ function mapStateToProps(state) {
         mainPageId: getStateString(state, 'mainPageId'),
         leftPanelState: state ? state.get('leftPanelState').toJS() : state,
         contactsPageState: state ? state.get('contactsPageState').toJS() : state,
+        contactEditPageState: state ? state.get('contactEditPageState').toJS() : state
     };
 }
 

@@ -31,18 +31,28 @@ class SimpleGrid extends React.Component {
             return <tr key={record.id}>{cells}</tr>;
         };
 
-        function getCellRender(id, record, columnCfg) {
+        function getCellRender(index, record, columnCfg) {
             var val = record[columnCfg.dataIndex],
                 styleCfg = { },
                 cellCfg = {className: '', style: styleCfg},
-                innerHtml = val;
+                innerHtml = val,
+                onClickHandler = columnCfg.onCellClick ? (e) => {
+                    columnCfg.onCellClick(record, val, columnCfg, e);
+                } : () => null;
             if(columnCfg.width) {
                 styleCfg.width = columnCfg.width;
             }
             if(columnCfg.renderer) {
                 innerHtml = columnCfg.renderer(record, val, cellCfg);
             }
-            return <td key={id} style={styleCfg} className={cellCfg.className}>{innerHtml}</td>;
+            return <td
+                key={index}
+                style={styleCfg}
+                className={cellCfg.className}
+                onClick={onClickHandler}
+                >
+                {innerHtml}
+                </td>;
         };
     }
 }

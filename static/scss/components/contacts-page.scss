@@ -17,11 +17,6 @@
                 line-height: 0;
             }
             &.name-cell {
-                b {
-                    font-size: $big-font-size;
-                    font-weight: $semibold-text-weight;
-                    line-height: 1.3em;
-                }
                 span {
                     color: $gray-font-color;
                 }

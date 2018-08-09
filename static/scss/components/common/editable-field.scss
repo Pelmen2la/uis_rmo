@@ -1,0 +1,14 @@
+.editable-field-wrapper {
+    padding: 2px 0;
+    &.edit-mode {
+        padding-bottom: 1px;
+    }
+    label {
+        color: $gray-font-color;
+        display: inline-block;
+        margin-right: 3px;
+    }
+    input {
+        border-bottom: 1px solid $gray-lines-color;
+    }
+}

@@ -33,6 +33,9 @@ store.dispatch(setState({
         contactsPageState: {
             selectedTabName: 'contacts',
             gridData: []
+        },
+        contactEditPageState: {
+            contactData: {}
         }
     })
 );

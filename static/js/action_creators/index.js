@@ -28,3 +28,18 @@ export function setContactsPageStateProperty(propName, val) {
         val
     };
 };
+
+export function openContactEditPage(contactData) {
+    return {
+        type: 'OPEN_CONTACT_EDIT_PAGE',
+        contactData
+    };
+};
+
+export function setContactsEditPageStateProperty(propName, val) {
+    return {
+        type: 'SET_CONTACT_EDIT_PAGE_STATE_PROPERTY',
+        propName,
+        val
+    };
+};

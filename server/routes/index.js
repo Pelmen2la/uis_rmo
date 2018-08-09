@@ -2,6 +2,8 @@ var fs = require('fs'),
     utils = require('./../../static/js/utils/appUtils'),
     path = require('path');
 
+const contacts = getFakeContacts(utils.getRandomInt(10, 20));
+
 module.exports = function(app) {
     app.get('/', function(req, res) {
         fs.readFile(path.join(global.appRoot, '/static/html/index.html'), 'utf8', function(err, indexPageHtml) {
@@ -22,7 +24,12 @@ module.exports = function(app) {
     });
 
     app.get('/fake_data/contacts', function(req, res) {
-        res.json(getFakeContacts(utils.getRandomInt(10, 12)));
+        res.json(contacts);
+    });
+
+    app.get('/fake_data/get_contact/:id', function(req, res) {
+        var contact = contacts.find((c) => c.id = req.params.id);
+        res.json(contact);
     });
 };
 
@@ -61,6 +68,7 @@ function getFakeEmployee() {
     return {
         name: name,
         surname: surname,
+        email: 'exampleemail@mail.ru',
         phone: getRandomPhoneNumber(),
         position: utils.getArrayRandom(positions),
         companyName: utils.getArrayRandom(companyNames),

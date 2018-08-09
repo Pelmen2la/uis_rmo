@@ -61,6 +61,9 @@ export default createReactClass({
                             <b>{[rec.name, rec.phone].join(', ')}</b><br/>
                             <span className="companyInfo">{[rec.companyName, rec.position].join(', ')}</span>
                         </div>
+                    },
+                    onCellClick: function(record) {
+                        props.openContactEditPageFn(record);
                     }
                 },
                 {

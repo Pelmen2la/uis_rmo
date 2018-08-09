@@ -10,7 +10,7 @@ export default createReactClass({
             <div className="app-header">
                 <span className="logo">LOGO</span>
                 <ul className="top-menu">
-                    {getTabCfg('contact', props.selectedItemId == 'contact')}
+                    {getTabCfg('contact', ['contact', 'contactEdit'].indexOf(props.selectedItemId) > -1)}
                     {getTabCfg('phone', props.selectedItemId == 'phone')}
                 </ul>
             </div>

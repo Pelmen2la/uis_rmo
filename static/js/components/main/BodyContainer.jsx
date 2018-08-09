@@ -2,6 +2,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import LeftPanel from './../left_panel/Main.jsx'
 import ContactsPage from './../pages/ContactsPage.jsx'
+import ContactEditPage from './../pages/ContactEditPage.jsx'
 
 export default createReactClass({
     render: function() {
@@ -20,6 +21,12 @@ export default createReactClass({
                 return <ContactsPage
                     changeStateFn={props.contactsPageChangeStateFn}
                     stateObj={props.contactsPageState}
+                    openContactEditPageFn={props.openContactEditPageFn}
+                />
+            } else if(pageId === 'contactEdit') {
+                return <ContactEditPage
+                    stateObj={props.contactEditPageState}
+                    changeStateFn={props.contactEditPageChangeStateFn}
                 />
             } else {
                 return '';

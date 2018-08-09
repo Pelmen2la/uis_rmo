@@ -20,6 +20,17 @@ function setContactsPageStateProperty(state, propName, val) {
     return setState(state, { contactsPageState: contactsPageState });
 };
 
+function openContactEditPage(state, contactData) {
+    var state = setContactsEditPageStateProperty(state, 'contactData', contactData);
+    return setMainPageId(state, 'contactEdit');
+};
+
+function setContactsEditPageStateProperty(state, propName, val) {
+    var contactEditPageState = state.get('contactEditPageState').toJS();
+    contactEditPageState[propName] = val;
+    return setState(state, { contactEditPageState: contactEditPageState });
+};
+
 
 export default function(state=Map(), action='') {
     switch(action.type) {
@@ -31,5 +42,9 @@ export default function(state=Map(), action='') {
             return setLeftPanelStateProperty(state, action.propName, action.val);
         case 'SET_CONTACTS_PAGE_STATE_PROPERTY':
             return setContactsPageStateProperty(state, action.propName, action.val);
+        case 'OPEN_CONTACT_EDIT_PAGE':
+            return openContactEditPage(state, action.contactData);
+        case 'SET_CONTACT_EDIT_PAGE_STATE_PROPERTY':
+            return setContactsEditPageStateProperty(state, action.propName, action.val);
   }
 };
