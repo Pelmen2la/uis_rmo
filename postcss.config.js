@@ -8,6 +8,7 @@ module.exports = {
         require('postcss-simple-vars'),
         require('autoprefixer'),
         require('postcss-easings'),
+        require("postcss-url"),
         require('cssnext')
     ]
 }
