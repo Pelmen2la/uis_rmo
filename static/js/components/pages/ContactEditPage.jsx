@@ -16,10 +16,10 @@ export default createReactClass({
                 changeStateFn={props.changeStateFn}
             />
             <ExpansionPanel
-                isExpanded={true}
+                isExpanded={stateObj.isCallHistoryListExpanded}
                 headerText="История вызовов"
                 content={getGridCfg()}
-                onHeaderClick={() => null}
+                onHeaderClick={() => props.changeStateFn('isCallHistoryListExpanded', !stateObj.isCallHistoryListExpanded)}
             />
         </div>;
 

@@ -35,7 +35,8 @@ store.dispatch(setState({
             gridData: []
         },
         contactEditPageState: {
-            contactData: {}
+            contactData: {},
+            isCallHistoryListExpanded: true
         }
     })
 );
