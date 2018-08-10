@@ -8,7 +8,7 @@ class ExpansionPanel extends React.Component {
         const content = isExpanded && props.content ? props.content : '';
 
         return (
-            <div>
+            <div className="expansion-panel-container">
                 <div className="expansion-panel-header" onClick={props.onHeaderClick}>
                     <Icon iconPath={'common/expansion_panel/' + (isExpanded ? 'collapse' : 'expand') + '_icon.png'}/>
                     {props.headerText}

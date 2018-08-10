@@ -63,7 +63,9 @@ export default createReactClass({
                         </div>
                     },
                     onCellClick: function(record) {
-                        props.openContactEditPageFn(record);
+                        fetch('/fake_data/get_contact/' + record.id).then((r) => r.json()).then((contactData) => {
+                            props.openContactEditPageFn(contactData);
+                        })
                     }
                 },
                 {

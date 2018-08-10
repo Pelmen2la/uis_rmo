@@ -29,6 +29,7 @@ module.exports = function(app) {
 
     app.get('/fake_data/get_contact/:id', function(req, res) {
         var contact = contacts.find((c) => c.id = req.params.id);
+        contact.callsHistory = getFakeCalls(utils.getRandomInt(5, 10));
         res.json(contact);
     });
 };
@@ -79,9 +80,13 @@ function getFakeEmployee() {
 function getFakeCalls(count) {
     var calls = [];
     for(var i = 0; i < count; i++) {
-        var callData = getFakeEmployee();
+        var callData = getFakeEmployee(),
+            date = new Date();
+        date.setTime(date.getTime() - utils.getRandomInt(0 , 3) * 60 * 60 * 24 * 1000);
+        callData.date = date;
         callData.direction = flipCoin() ? 'in' : 'out';
         callData.showName = flipCoin();
+        callData.status = utils.getArrayRandom(['завершен', 'трансфер', 'обрыв связи']);
         callData.time = utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9);
         calls.push(callData);
     }

@@ -12,8 +12,8 @@ class SimpleGrid extends React.Component {
         </table>;
 
         function getHeaderRender(columnsCfg) {
-            var ths = columnsCfg.map((c) => {
-                return <th key={c.dataIndex}>{c.text}</th>
+            var ths = columnsCfg.map((c, i) => {
+                return <th key={i}>{c.text}</th>
             });
             return <thead><tr>{ths}</tr></thead>;
         };
@@ -33,20 +33,17 @@ class SimpleGrid extends React.Component {
 
         function getCellRender(index, record, columnCfg) {
             var val = record[columnCfg.dataIndex],
-                styleCfg = { },
+                styleCfg = getCellWidthStyle(columnCfg),
                 cellCfg = {className: '', style: styleCfg},
                 innerHtml = val,
                 onClickHandler = columnCfg.onCellClick ? (e) => {
                     columnCfg.onCellClick(record, val, columnCfg, e);
                 } : () => null;
-            if(columnCfg.width) {
-                styleCfg.width = columnCfg.width;
-            }
             if(columnCfg.renderer) {
                 innerHtml = columnCfg.renderer(record, val, cellCfg);
             }
             return <td
-                key={index}
+                key={record.id + 'td' + index}
                 style={styleCfg}
                 className={cellCfg.className}
                 onClick={onClickHandler}
@@ -54,6 +51,20 @@ class SimpleGrid extends React.Component {
                 {innerHtml}
                 </td>;
         };
+
+        function getCellWidthStyle(columnCfg) {
+            var width = columnCfg.width,
+                parsedWidth = parseInt(width);
+            if(!width || isNaN(parsedWidth)) {
+                return {};
+            }
+            if(width.toString().indexOf('%') > -1) {
+                width = parsedWidth + '%';
+            } else {
+                width = parsedWidth + 'px';
+            }
+            return { width: width };
+        }
     }
 }
 

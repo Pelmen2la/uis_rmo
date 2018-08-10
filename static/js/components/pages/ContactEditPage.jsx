@@ -1,6 +1,9 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import ContactForm from './ContactForm.jsx'
+import Icon from './../common/Icon.jsx'
+import SimpleGrid from './../common/SimpleGrid.jsx'
+import ExpansionPanel from './../common/ExpansionPanel.jsx'
 
 export default createReactClass({
     render: function() {
@@ -12,6 +15,65 @@ export default createReactClass({
                 contactData={stateObj.contactData}
                 changeStateFn={props.changeStateFn}
             />
+            <ExpansionPanel
+                isExpanded={true}
+                headerText="История вызовов"
+                content={getGridCfg()}
+                onHeaderClick={() => null}
+            />
         </div>;
+
+        function getGridCfg() {
+            return <div className="simple-grid-container">
+                <SimpleGrid
+                    hideHeader={true}
+                    columnsCfg={getGridColumnsCfg()}
+                    data={stateObj.contactData.callsHistory || []}
+                />
+            </div>
+        };
+
+        function getGridColumnsCfg() {
+            return [
+                {
+                    dataIndex: 'direction',
+                    width: 20,
+                    renderer: (rec) => {
+                        var imgName = rec.direction === 'in' ? 'incomig' : 'outgoing';
+                        return <Icon iconPath={'common/' + imgName + '_call.png'}/>
+                    }
+                },
+                {
+                    dataIndex: 'direction',
+                    width: 110,
+                    renderer: (rec) => {
+                        return <b>
+                            {rec.direction === 'in' ? 'Входящий' : 'Исходящий'}
+                        </b>
+                    }
+                },
+                {
+                    dataIndex: 'time',
+                    renderer: (rec, val, cellCfg) => {
+                        return <b>{val}</b>
+                    }
+                },
+                {
+                    dataIndex: 'status',
+                    width: 90,
+                    renderer: (rec, val, cellCfg) => {
+                        cellCfg.className = 'gray-text';
+                        return val;
+                    }
+                },
+                {
+                    dataIndex: 'date',
+                    renderer: (rec, val, cellCfg) => {
+                        cellCfg.className = 'date-cell gray-text';
+                        return val.split('T')[0];
+                    }
+                }
+            ]
+        };
     }
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
+import Icon from './../common/Icon.jsx'
 
 export default createReactClass({
     render: function() {
@@ -12,8 +13,9 @@ export default createReactClass({
         );
 
         function getCallHtml(call) {
+            var imgName = call.direction === 'in' ? 'incomig' : 'outgoing';
             return <li key={call.id}>
-                <img src={'/resources/icons/left_panel/' + call.direction + '_call.png'}/>
+                <Icon iconPath={'common/' + imgName + '_call.png'}/>
                 <span>{call.showName ? (call.name + ' ' + call.surname) : call.phone}</span>
                 {callIcon}
                 <span className="time">{ call.time }</span>
