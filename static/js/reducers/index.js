@@ -51,7 +51,7 @@ export default function(state=Map(), action='') {
         case 'OPEN_CONTACT_EDIT_PAGE':
             return openContactEditPage(state, action.contactData);
         case 'SET_CONTACT_EDIT_PAGE_STATE_PROPERTY':
-
+            return setContactsEditPageStateProperty(state, action.propName, action.val);
         case 'SET_PHONE_PANEL_STATE_PROPERTY':
             return setPhonePanelStateProperty(state, action.propName, action.val);
   }
