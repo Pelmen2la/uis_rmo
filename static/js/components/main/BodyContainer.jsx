@@ -1,6 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import LeftPanel from './../left_panel/Main.jsx'
+import PhonePanel from './../phone_panel/Main.jsx'
 import ContactsPage from './../pages/ContactsPage.jsx'
 import ContactEditPage from './../pages/ContactEditPage.jsx'
 
@@ -14,6 +15,10 @@ export default createReactClass({
             <div className="main-content-container">
                 {getMainPageHtml(props.mainPageId)}
             </div>
+            <PhonePanel
+                stateObj={props.phonePanelState}
+                changeStateFn={props.phonePanelChangeStateFn}
+            />
         </div>;
 
         function getMainPageHtml(pageId) {

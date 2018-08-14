@@ -37,6 +37,10 @@ store.dispatch(setState({
         contactEditPageState: {
             contactData: {},
             isCallHistoryListExpanded: true
+        },
+        phonePanelState: {
+            phoneNumber: '',
+            isInCall: false
         }
     })
 );

@@ -1,0 +1,71 @@
+.phone-panel {
+    width: 328px;
+    height: 542px;
+    margin-top: $main-top-margin;
+    background: white;
+
+    .phone-panel-header {
+        height: 90px;
+        text-align: center;
+        padding: 10px 3px 19px;
+        box-sizing: border-box;
+        border-bottom: 1px solid $gray-lines-color;
+        .big-textfield-wrapper {
+            background: white;
+            padding-bottom: 5px;
+            input {
+                height: 28px;
+                text-align: center;
+                background: white;
+                font-size: $huge-font-size;
+            }
+        }
+    }
+
+    .phone-buttons-panel {
+        border-bottom: 1px solid $gray-lines-color;
+        padding-top: 30px;
+        .buttons-block {
+            text-align: center;
+            margin-bottom: 24px;
+            .phone-button {
+                overflow: auto;
+                display: inline-block;
+                &:not(:first-child):not(:last-child) {
+                    margin: 0 30px;
+                }
+                div {
+                    height: 60px;
+                    width: 60px;
+                    line-height: 56px;
+                    font-size: 32px;
+                    border: 2px solid $gray-lines-color;
+                    border-radius: 50%;
+                    box-sizing: border-box;
+                    cursor: pointer;
+                }
+                .button-label {
+                    margin: 5px 0 6px;
+                    display: inline-block;
+                    height: 18px;
+                }
+                &:hover {
+                    .button-label {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+
+    .call-button {
+        width: 73.170731%; /* 240 / 328 */
+        height: 50px;
+        margin: 10px auto;
+        border-radius: 25px;
+        background-color: #585858;
+        img {
+            margin: 0 auto;
+        }
+    }
+}

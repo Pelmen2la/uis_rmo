@@ -43,3 +43,11 @@ export function setContactsEditPageStateProperty(propName, val) {
         val
     };
 };
+
+export function setPhonePanelStateProperty(propName, val) {
+    return {
+        type: 'SET_PHONE_PANEL_STATE_PROPERTY',
+        propName,
+        val
+    };
+};

@@ -31,6 +31,12 @@ function setContactsEditPageStateProperty(state, propName, val) {
     return setState(state, { contactEditPageState: contactEditPageState });
 };
 
+function setPhonePanelStateProperty(state, propName, val) {
+    var phonePanelState = state.get('phonePanelState').toJS();
+    phonePanelState[propName] = val;
+    return setState(state, { phonePanelState: phonePanelState });
+};
+
 
 export default function(state=Map(), action='') {
     switch(action.type) {
@@ -45,6 +51,8 @@ export default function(state=Map(), action='') {
         case 'OPEN_CONTACT_EDIT_PAGE':
             return openContactEditPage(state, action.contactData);
         case 'SET_CONTACT_EDIT_PAGE_STATE_PROPERTY':
-            return setContactsEditPageStateProperty(state, action.propName, action.val);
+
+        case 'SET_PHONE_PANEL_STATE_PROPERTY':
+            return setPhonePanelStateProperty(state, action.propName, action.val);
   }
 };

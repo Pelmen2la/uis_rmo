@@ -1,9 +1,8 @@
 
 .main-container .left-panel {
-    min-width: 267px;
-    max-width: 350px;
-    width: 19.881744%; /* 267 / 1366 */
+    width: 267px;
     border-right: 1px solid $gray-lines-color2;
+    background: white;
 
     .call-list {
         padding-left: 1em;

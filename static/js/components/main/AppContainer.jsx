@@ -22,6 +22,8 @@ const AppContainerClass = createReactClass({
                 contactEditPageState={props.contactEditPageState}
                 openContactEditPageFn={props.openContactEditPage}
                 contactEditPageChangeStateFn={props.setContactsEditPageStateProperty}
+                phonePanelState={props.phonePanelState}
+                phonePanelChangeStateFn={props.setPhonePanelStateProperty}
             />
         </div>
     }
@@ -33,7 +35,8 @@ function mapStateToProps(state) {
         mainPageId: getStateString(state, 'mainPageId'),
         leftPanelState: state ? state.get('leftPanelState').toJS() : state,
         contactsPageState: state ? state.get('contactsPageState').toJS() : state,
-        contactEditPageState: state ? state.get('contactEditPageState').toJS() : state
+        contactEditPageState: state ? state.get('contactEditPageState').toJS() : state,
+        phonePanelState: state ? state.get('phonePanelState').toJS() : state
     };
 }
 

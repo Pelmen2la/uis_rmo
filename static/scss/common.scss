@@ -4,6 +4,7 @@
 $main-font-size: 15px;
 $small-font-size: 0.866666em; /* 13 / 15 */
 $big-font-size: 1.133333em; /* 17 / 15 */
+$huge-font-size: 1.4em; /* 21 / 15 */
 $semibold-text-weight: 900;
 $gray-font-color: #B4B4B4;
 
@@ -13,6 +14,8 @@ $black-lines-color: #585858;
 
 $main-background-color: #F5F5F5;
 $secondary-background-color: #FAFAFA;
+
+$main-top-margin: 20px;
 
 html, body {
     width: 100%;
@@ -39,8 +42,9 @@ b {
 
 .main-content-container {
     background-color: $main-background-color;
-    padding: 20px;
-    width: calc(100% - 700px);
+    padding: $main-top-margin 20px 20px;
+    box-sizing: border-box;
+    width: calc(100% - 596px);
 }
 
 .main-page-container {
