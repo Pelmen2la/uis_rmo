@@ -1,7 +1,7 @@
 import React from 'react';
 import TabControl from './../common/TabControl.jsx';
 import CallList from './CallList.jsx';
-import FavoritesContactList from './FavoritesContactList.jsx';
+import SmallContactList from './../common/SmallContactList.jsx';
 import ExpansionPanel from './../common/ExpansionPanel.jsx';
 import createReactClass from 'create-react-class';
 
@@ -31,7 +31,7 @@ export default createReactClass({
                     <ExpansionPanel
                         isExpanded={stateObj.isFavoritesContactListExpanded}
                         headerText="Избранное"
-                        content={<FavoritesContactList contactList={stateObj.favoritesContactList}/>}
+                        content={<SmallContactList contactList={stateObj.favoritesContactList}/>}
                         onHeaderClick={() => props.changeStateFn('isFavoritesContactListExpanded', !stateObj.isFavoritesContactListExpanded)}
                     />
                 </React.Fragment>

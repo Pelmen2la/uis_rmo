@@ -23,7 +23,7 @@ export default createReactClass({
         };
 
         function getCallIcon() {
-            return <span className="call-icon"></span>
+            return <span className="call-icon small-list-full-height-btn"></span>
         };
     }
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import BigTextField from './../common/BigTextField.jsx'
+import Icon from './../common/Icon.jsx'
 
 
 export default createReactClass({
@@ -9,6 +10,7 @@ export default createReactClass({
 
         return (
             <div className="phone-panel-header">
+                {props.showBackBtn ? getBackBtnImage() : ''}
                 <BigTextField
                     hasClearIcon={true}
                     value={props.phoneNumber}
@@ -24,6 +26,12 @@ export default createReactClass({
         };
         function onPhoneClearButtonClick() {
             props.changeStateFn('phoneNumber', '');
+        };
+        function getBackBtnImage() {
+            return <Icon iconPath="common/back_icon.png" imgClassName="back-button" onImageClick={onBackIconClick}/>;
+        };
+        function onBackIconClick() {
+            props.changeStateFn('customBodyType', '');
         };
         function getLabel(number) {
             if(!number || !number.toString().length) {

@@ -4,7 +4,7 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {AppContainer} from '../components/main/AppContainer.jsx'
 import reducer from './../reducers/index.js';
-import {setState, setLeftPanelStateProperty, setContactsPageStateProperty} from './../action_creators/index.js';
+import {setState, setLeftPanelStateProperty, setContactsPageStateProperty, setPhonePanelStateProperty } from './../action_creators/index.js';
 import utils from './../utils/appUtils.js';
 
 import './../../scss/index.scss'
@@ -40,17 +40,19 @@ store.dispatch(setState({
         },
         phonePanelState: {
             phoneNumber: '',
-            isInCall: false
+            isInCall: false,
+            customBodyType: '',
+            contactList: []
         }
     })
 );
 
 loadRecentCalls();
-loadFavoritesContacts();
+loadContacts();
 loadSalesDepartmentCalls();
 loadContactsPageData();
 window.setInterval(loadRecentCalls, 2000);
-window.setInterval(loadFavoritesContacts, 2500);
+//window.setInterval(loadContacts, 2500);
 window.setInterval(loadSalesDepartmentCalls, 3000);
 //window.setInterval(loadContactsPageData, 3500);
 
@@ -62,11 +64,12 @@ function loadRecentCalls() {
     })
 };
 
-function loadFavoritesContacts() {
+function loadContacts() {
     fetch('/fake_data/favorites_contacts').then(function(response) {
         return response.json();
-    }).then(function(favoritesContactList) {
-        store.dispatch(setLeftPanelStateProperty('favoritesContactList', favoritesContactList));
+    }).then(function(contactList) {
+        store.dispatch(setLeftPanelStateProperty('favoritesContactList', contactList));
+        store.dispatch(setPhonePanelStateProperty('contactList', contactList));
     })
 };
 

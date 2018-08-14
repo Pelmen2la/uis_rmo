@@ -4,12 +4,24 @@
     margin-top: $main-top-margin;
     background: white;
 
+    .body-container {
+        height: calc(100% - 90px);
+    }
+
     .phone-panel-header {
         height: 90px;
         text-align: center;
         padding: 10px 3px 19px;
         box-sizing: border-box;
         border-bottom: 1px solid $gray-lines-color;
+        position: relative;
+        .back-button {
+            position: absolute;
+            top: 12px;
+            left: 13px;
+            z-index: 5;
+            cursor: pointer;
+        }
         .big-textfield-wrapper {
             background: white;
             padding-bottom: 5px;
@@ -31,10 +43,11 @@
             .phone-button {
                 overflow: auto;
                 display: inline-block;
+                overflow-x: visible;
                 &:not(:first-child):not(:last-child) {
                     margin: 0 30px;
                 }
-                div {
+                > div {
                     height: 60px;
                     width: 60px;
                     line-height: 56px;
@@ -66,6 +79,17 @@
         background-color: #585858;
         img {
             margin: 0 auto;
+        }
+    }
+
+    .small-contact-list {
+        max-height: 100%;
+        overflow-y: auto;
+        .do-transfer-button {
+            background-image: url('/resources/icons/common/transfer_icon.png');
+            &:hover {
+                background-image: url('/resources/icons/common/transfer_icon_white.png');
+            }
         }
     }
 }

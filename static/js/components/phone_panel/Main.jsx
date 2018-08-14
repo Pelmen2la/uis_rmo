@@ -3,6 +3,7 @@ import createReactClass from 'create-react-class';
 import Header from './Header.jsx';
 import ButtonsPanel from './ButtonsPanel.jsx';
 import CallButton from './CallButton.jsx';
+import TransferPanel from './TransferPanel.jsx';
 
 export default createReactClass({
     render: function() {
@@ -13,9 +14,36 @@ export default createReactClass({
         return (
             <div className="phone-panel">
                 <Header
+                    showBackBtn={!!stateObj.customBodyType}
                     phoneNumber={phoneNumber}
                     changeStateFn={props.changeStateFn}
                 />
+                <div className="body-container">
+                    {getBody()}
+                </div>
+            </div>
+        );
+
+        function onActionButtonClick(val) {
+            if(val == parseInt(val)) {
+                props.changeStateFn('phoneNumber', stateObj.phoneNumber.toString() + val.toString());
+            } else if(val == 'transfer') {
+                props.changeStateFn('customBodyType', 'transfer');
+            }
+        };
+        function onCallButtonClick() {
+            props.changeStateFn('isInCall', !stateObj.isInCall)
+        };
+        function getBody() {
+            var bodyType = stateObj.customBodyType;
+            if(!bodyType) {
+                return getPhonePanel();
+            } else if(bodyType == 'transfer') {
+                return getTransferPanel();
+            }
+        };
+        function getPhonePanel() {
+            return <React.Fragment>
                 <ButtonsPanel
                     buttonsType={stateObj.isInCall ? 'actions' : 'numbers'}
                     onButtonClick={onActionButtonClick}
@@ -25,16 +53,10 @@ export default createReactClass({
                     disabled={phoneNumber.length < 4}
                     onClick={onCallButtonClick}
                 />
-            </div>
-        );
-
-        function onActionButtonClick(val) {
-            if(val == parseInt(val)) {
-                props.changeStateFn('phoneNumber', stateObj.phoneNumber.toString() + val.toString());
-            }
+            </React.Fragment>
         };
-        function onCallButtonClick() {
-            props.changeStateFn('isInCall', !stateObj.isInCall)
+        function getTransferPanel() {
+            return <TransferPanel contactList={stateObj.contactList} />
         };
     }
 });

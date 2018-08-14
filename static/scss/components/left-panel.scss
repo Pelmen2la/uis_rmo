@@ -26,34 +26,10 @@
             }
 
             .call-icon {
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                float: right;
-                cursor: pointer;
-                margin: -13px 0;
-                background-image: url('/resources/icons/left_panel/phone_icon.png');
-                background-repeat: no-repeat;
-                background-position: 13px;
+                background-image: url('/resources/icons/common/phone_icon.png');
                 &:hover {
-                    background-image: url('/resources/icons/left_panel/phone_icon_white.png');
-                    background-color: $black-lines-color;
+                    background-image: url('/resources/icons/common/phone_icon_white.png');
                 }
-            }
-        }
-    }
-
-    .favorites-contact-list {
-        padding-left: 1em;
-        li {
-            padding: 0.733333em 0; /* 11 / 15 */
-            border-bottom: 1px solid $gray-lines-color2;
-            img {
-                padding-right: 1em;
-            }
-            .is-in-call-icon {
-                float: right;
-                padding-right: 1.230769em; /* 16 / 13 */
             }
         }
     }

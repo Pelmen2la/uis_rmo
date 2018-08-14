@@ -7,9 +7,10 @@
 @import './components/common/expansion-panel.scss';
 @import './components/common/big-textfield.scss';
 @import './components/common/editable-field.scss';
+@import './components/common/small-contact-list.scss';
 
 .app-header {
-    overflow: hidden;
+    overflow: hidden;/**/
     .logo {
         font-size: 1.6em; /* 24 / 15 */
         line-height: 2.083333em; /* 50 / 24 */
