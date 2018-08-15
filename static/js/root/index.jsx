@@ -21,6 +21,10 @@ ReactDOM.render(
 
 store.dispatch(setState({
         mainPageId: 'contact',
+        operatorStatusState: {
+            currentStatus: 'active',
+            showStatusPopup: false
+        },
         leftPanelState: {
             selectedTabName: 'contacts',
             isRecentCallsListExpanded: true,

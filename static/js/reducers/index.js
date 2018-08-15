@@ -37,6 +37,11 @@ function setPhonePanelStateProperty(state, propName, val) {
     return setState(state, { phonePanelState: phonePanelState });
 };
 
+function setOperatorStatusState(state, propName, val) {
+    var operatorStatusState = state.get('operatorStatusState').toJS();
+    operatorStatusState[propName] = val;
+    return setState(state, { operatorStatusState: operatorStatusState });
+};
 
 export default function(state=Map(), action='') {
     switch(action.type) {
@@ -54,5 +59,7 @@ export default function(state=Map(), action='') {
             return setContactsEditPageStateProperty(state, action.propName, action.val);
         case 'SET_PHONE_PANEL_STATE_PROPERTY':
             return setPhonePanelStateProperty(state, action.propName, action.val);
+        case 'SET_OPERATOR_STATUS_STATE':
+            return setOperatorStatusState(state, action.propName, action.val);
   }
 };

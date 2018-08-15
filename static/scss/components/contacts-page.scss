@@ -16,6 +16,7 @@
                 line-height: 0;
             }
             &.name-cell {
+                cursor: pointer;
                 span {
                     color: $gray-font-color;
                 }

@@ -51,3 +51,11 @@ export function setPhonePanelStateProperty(propName, val) {
         val
     };
 };
+
+export function setOperatorStatusState(propName, val) {
+    return {
+        type: 'SET_OPERATOR_STATUS_STATE',
+        propName,
+        val
+    };
+};

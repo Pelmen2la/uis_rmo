@@ -8,8 +8,10 @@ import * as actionCreators from './../../action_creators/index.js';
 const AppContainerClass = createReactClass({
     render: function() {
         var props = this.props;
-        return <div className="app-container">
+        return <React.Fragment>
             <AppHeader
+                operatorStatusState={props.operatorStatusState}
+                setOperatorStatusStateFn={props.setOperatorStatusState}
                 selectedItemId={props.mainPageId}
                 onMainMenuItemClick={props.setMainPageId}
             />
@@ -25,7 +27,7 @@ const AppContainerClass = createReactClass({
                 phonePanelState={props.phonePanelState}
                 phonePanelChangeStateFn={props.setPhonePanelStateProperty}
             />
-        </div>
+        </React.Fragment>
     }
 });
 
@@ -33,6 +35,7 @@ const AppContainerClass = createReactClass({
 function mapStateToProps(state) {
     return {
         mainPageId: getStateString(state, 'mainPageId'),
+        operatorStatusState: state ? state.get('operatorStatusState').toJS() : state,
         leftPanelState: state ? state.get('leftPanelState').toJS() : state,
         contactsPageState: state ? state.get('contactsPageState').toJS() : state,
         contactEditPageState: state ? state.get('contactEditPageState').toJS() : state,
