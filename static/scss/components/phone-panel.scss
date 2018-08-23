@@ -44,9 +44,8 @@
                 overflow: auto;
                 display: inline-block;
                 overflow-x: visible;
-                &:not(:first-child):not(:last-child) {
-                    margin: 0 30px;
-                }
+                width: 33.333333%;
+                text-align: center;
                 > div {
                     height: 60px;
                     width: 60px;
