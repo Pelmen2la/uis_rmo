@@ -1,7 +1,6 @@
 import React from 'react';
-import TabControl from './../common/TabControl.jsx';
-import CallList from './CallList.jsx';
-import SmallContactList from './../common/SmallContactList.jsx';
+import ExpansionList from './ExpansionList.jsx';
+import Icon from './../common/Icon.jsx';
 import ExpansionPanel from './../common/ExpansionPanel.jsx';
 import createReactClass from 'create-react-class';
 
@@ -9,52 +8,104 @@ export default createReactClass({
     render: function() {
         const props = this.props;
         const stateObj = props.stateObj || {};
-        const tabsCfg = [
-            { name: 'contacts', iconUrl: 'left_panel/contacts_tab_icon.png' },
-            { name: 'calls', iconUrl: 'left_panel/calls_tab_icon.png' }
-        ];
-        var getInnerComponents = function() {
-                if(stateObj.selectedTabName === 'contacts') {
-                    return getContactsTabContent();
-                } else {
-                    return getPhonesTabContent();
-                }
-            },
-            getContactsTabContent = function() {
-                return <React.Fragment>
-                    <ExpansionPanel
-                        isExpanded={stateObj.isRecentCallsListExpanded}
-                        headerText="Недавние"
-                        content={<CallList callList={stateObj.recentCallList}/>}
-                        onHeaderClick={() => props.changeStateFn('isRecentCallsListExpanded', !stateObj.isRecentCallsListExpanded)}
-                    />
-                    <ExpansionPanel
-                        isExpanded={stateObj.isFavoritesContactListExpanded}
-                        headerText="Избранное"
-                        content={<SmallContactList contactList={stateObj.favoritesContactList}/>}
-                        onHeaderClick={() => props.changeStateFn('isFavoritesContactListExpanded', !stateObj.isFavoritesContactListExpanded)}
-                    />
-                </React.Fragment>
-            },
-            getPhonesTabContent = function() {
-                return <ExpansionPanel
-                    isExpanded={stateObj.isSalesDepartmentCallListExpanded}
-                    headerText="Отдел продаж"
-                    content={<CallList hasCallIcon={true} callList={stateObj.salesDepartmentCallList}/>}
-                    onHeaderClick={() => props.changeStateFn('isSalesDepartmentCallListExpanded', !stateObj.isSalesDepartmentCallListExpanded)}
-                />
-            };
 
         return (
             <div className="left-panel">
-                <TabControl
-                    tabsCfg={tabsCfg}
-                    selectedTabName={stateObj.selectedTabName}
-                    onTabClick={(tabName) => props.changeStateFn('selectedTabName', tabName)}
+                <ExpansionPanel
+                    headerText="Очередь вызовов"
+                    isExpanded={stateObj.expandedListName == 'callsQueue'}
+                    onHeaderClick={() => onExpansionListHeaderClick('callsQueue')}
+                    content={getQueueCallGroupsHtml(stateObj.callQueueGroups || [])}
                 />
-                {getInnerComponents()}
+                <ExpansionList
+                    headerText="Недавние"
+                    isExpanded={stateObj.expandedListName == 'recentCalls'}
+                    onExpansionPanelHeaderClick={() => onExpansionListHeaderClick('recentCalls')}
+                    listData={stateObj.recentCallListData}
+                    listClassName="recent-calls-list"
+                    getListItemLeftChildrenFn={getCallsListLeftItems}
+                    getListItemRightChildrenFn={getCallsListRightItems}
+                />
+                <ExpansionList
+                    headerText="Избранное"
+                    isExpanded={stateObj.expandedListName == 'favoriteContacts'}
+                    onExpansionPanelHeaderClick={() => onExpansionListHeaderClick('favoriteContacts')}
+                    listData={stateObj.favoriteContactListData}
+                    listClassName="favorite-contact-list"
+                    getListItemLeftChildrenFn={getFavouriteContactsListLeftItems}
+                    getListItemRightChildrenFn={getFavouriteContactsListRightItems}
+                />
             </div>
         );
 
+        function onExpansionListHeaderClick(panelName) {
+            if(stateObj.expandedListName === panelName) {
+                props.changeStateFn('expandedListName', null);
+            } else {
+                props.changeStateFn('expandedListName', panelName);
+            }
+        };
+        function getQueueCallGroupsHtml(groups) {
+            return groups.map(getQueueCallGroupHtml);
+        };
+        function getQueueCallGroupHtml(group) {
+            function onExpansionListHeaderClick(groupId) {
+                var ids = stateObj.expandedCallQueueGroupIds;
+                if(isExpanded) {
+                    ids.splice(groupIndexInExpandedList, 1);
+                } else {
+                    ids.push(groupId);
+                }
+                props.changeStateFn('expandedCallQueueGroupIds', ids);
+            };
+
+            var groupIndexInExpandedList = stateObj.expandedCallQueueGroupIds.indexOf(group.id),
+                isExpanded = groupIndexInExpandedList > -1;
+
+            return <ExpansionList
+                key={group.id}
+                headerText={group.name}
+                isExpanded={isExpanded}
+                isReverse={true}
+                onExpansionPanelHeaderClick={() => onExpansionListHeaderClick(group.id)}
+                listData={group.calls}
+                listClassName="queue-calls-list"
+                getListItemLeftChildrenFn={getCallsListLeftItems}
+                getListItemRightChildrenFn={getCallsListRightItems}
+            />
+        };
+        function getFavouriteContactsListLeftItems(contact) {
+            var isInCall = contact.status !== 'unknown' ? contact.isInCall : 'unknown';
+            return <React.Fragment>
+                    <Icon iconPath={'common/' + contact.status + '_status.png'}/>
+                    <Icon iconPath={'common/' + isInCall + '_icon.png'}/>
+                    <span className="text-container">
+                        <span>{contact.surname + ' ' + contact.name}</span><br/>
+                        <span className="phone-text gray-text">{contact.phone}</span>
+                    </span>
+                </React.Fragment>
+        };
+        function getFavouriteContactsListRightItems() {
+            return getCallIconHtml();
+        };
+        function getCallsListLeftItems(call) {
+            var callIconName = [(call.isInternal ? 'internal' : 'external'), call.direction, 'call'].join('_');
+            return <React.Fragment>
+                <Icon iconPath={'common/' + callIconName + '.png'}/>
+                <span className="text-container">
+                    <span>{call.surname + ' ' + call.name}</span><br/>
+                    <span className="phone-text gray-text">{call.phone}</span>
+                </span>
+            </React.Fragment>
+        };
+        function getCallsListRightItems(call) {
+            return <React.Fragment>
+                {getCallIconHtml()}
+                <span className="date-span">{call.date.split('T')[1].substring(0, 5)}</span>
+            </React.Fragment>
+        };
+        function getCallIconHtml() {
+            return <span className="call-icon"></span>
+        };
     }
 });

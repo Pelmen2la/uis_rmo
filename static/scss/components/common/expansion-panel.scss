@@ -3,9 +3,13 @@
         cursor: pointer;
         font-weight: $semibold-text-weight;
         border-bottom: 1px solid $gray-lines-color;
-        padding: 1em 0;
+        padding: 1em;
         img {
-            margin: 0 1em;
+            margin-right: 1em;
+        }
+        &.reverse img {
+            float: right;
+            margin-left: 1em;
         }
     }
 }

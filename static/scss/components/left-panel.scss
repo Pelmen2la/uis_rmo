@@ -1,36 +1,64 @@
 
 .main-container .left-panel {
-    width: 267px;
+    width: 300px;
     border-right: 1px solid $gray-lines-color2;
     background: white;
+    box-sizing: border-box;
 
-    .call-list {
-        padding-left: 1em;
+    .simple-list {
         li {
-            border-bottom: 1px solid $gray-lines-color2;
-            padding: 12px 0 11px;
-            * {
-                vertical-align: middle;
-            }
-            img {
-                padding-right: 1em;
-            }
-            span {
-                line-height: 14px;
-                &.time {
-                    font-size: $small-font-size;
-                    float: right;
-                    color: $gray-font-color;
-                    margin-right: 1.230769em; /* 16 / 13 */
+            padding: 5px 0;
+            &:hover {
+                background: $main-background-color;
+                .call-icon {
+                    display: inline-block;
                 }
             }
-
+            img:first-child {
+                margin: 0 10px 0 15px;
+            }
+            .text-container {
+                margin-left: 12px;
+                line-height: 1.2em;
+                .phone-text {
+                    font-size: $small-font-size;
+                }
+            }
             .call-icon {
+                height: 50px;
+                width: 50px;
+                display: none;
+                margin-top: -5px;
+                cursor: pointer;
+                background-repeat: no-repeat;
+                background-position: 18px;
                 background-image: url('/resources/icons/common/phone_icon.png');
                 &:hover {
+                    background-color: $black-lines-color;
                     background-image: url('/resources/icons/common/phone_icon_white.png');
                 }
             }
         }
+    }
+
+    .recent-calls-list {
+        li .date-span {
+            font-size: $small-font-size;
+            color: $gray-font-color;
+            display: inline-block;
+            margin-top: 22px;
+        }
+    }
+
+    .queue-calls-list {
+        li .date-span {
+            font-size: $small-font-size;
+            display: inline-block;
+            margin-top: 2px;
+        }
+    }
+
+    .expansion-panel-header.reverse {
+        background: $main-background-color;
     }
 }

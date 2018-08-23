@@ -15,6 +15,10 @@ module.exports = function(app) {
         res.json(getFakeCalls(utils.getRandomInt(2, 5)));
     });
 
+    app.get('/fake_data/call_queue_groups', function(req, res) {
+        res.json(getFakeCallQueueGroups(utils.getRandomInt(2, 4)));
+    });
+
     app.get('/fake_data/sales_department_calls', function(req, res) {
         res.json(getFakeCalls(utils.getRandomInt(2, 5)));
     });
@@ -85,12 +89,26 @@ function getFakeCalls(count) {
         date.setTime(date.getTime() - utils.getRandomInt(0 , 3) * 60 * 60 * 24 * 1000);
         callData.date = date;
         callData.direction = flipCoin() ? 'in' : 'out';
+        callData.isInternal = flipCoin();
         callData.showName = flipCoin();
         callData.status = utils.getArrayRandom(['завершен', 'трансфер', 'обрыв связи']);
         callData.time = utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9);
         calls.push(callData);
     }
     return calls;
+};
+
+function getFakeCallQueueGroups(count) {
+    var groups = [];
+    for(var i = 0; i < count; i++) {
+        var group = {
+            name: ['Отдел продаж', 'Отдел щей', 'Отдел лещей', 'Отдел котов'][i],
+            calls: getFakeCalls(utils.getRandomInt(4, 7)),
+            id: getUid()
+        };
+        groups.push(group);
+    }
+    return groups;
 };
 
 function getFakeContacts(count) {

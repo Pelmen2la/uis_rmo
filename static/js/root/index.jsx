@@ -26,13 +26,11 @@ store.dispatch(setState({
             showStatusPopup: false
         },
         leftPanelState: {
-            selectedTabName: 'contacts',
-            isRecentCallsListExpanded: true,
-            recentCallList: [],
-            isFavoritesContactListExpanded: true,
-            favoritesContactList: [],
-            isSalesDepartmentCallListExpanded: true,
-            salesDepartmentCallList: []
+            expandedListName: 'favoriteContacts',
+            callQueueGroups: [],
+            expandedCallQueueGroupIds: [],
+            recentCallListData: [],
+            favoriteContactListData: [],
         },
         contactsPageState: {
             selectedTabName: 'contacts',
@@ -55,16 +53,25 @@ loadRecentCalls();
 loadContacts();
 loadSalesDepartmentCalls();
 loadContactsPageData();
-window.setInterval(loadRecentCalls, 2000);
+loadCallQueueGroups();
+//window.setInterval(loadRecentCalls, 2000);
 //window.setInterval(loadContacts, 2500);
-window.setInterval(loadSalesDepartmentCalls, 3000);
+//window.setInterval(loadSalesDepartmentCalls, 3000);
 //window.setInterval(loadContactsPageData, 3500);
 
 function loadRecentCalls() {
     fetch('/fake_data/recent_calls').then(function(response) {
         return response.json();
     }).then(function(recentCallsList) {
-        store.dispatch(setLeftPanelStateProperty('recentCallList', recentCallsList));
+        store.dispatch(setLeftPanelStateProperty('recentCallListData', recentCallsList));
+    })
+};
+
+function loadCallQueueGroups() {
+    fetch('/fake_data/call_queue_groups').then(function(response) {
+        return response.json();
+    }).then(function(callQueueGroups) {
+        store.dispatch(setLeftPanelStateProperty('callQueueGroups', callQueueGroups));
     })
 };
 
@@ -72,7 +79,7 @@ function loadContacts() {
     fetch('/fake_data/favorites_contacts').then(function(response) {
         return response.json();
     }).then(function(contactList) {
-        store.dispatch(setLeftPanelStateProperty('favoritesContactList', contactList));
+        store.dispatch(setLeftPanelStateProperty('favoriteContactListData', contactList));
         store.dispatch(setPhonePanelStateProperty('contactList', contactList));
     })
 };

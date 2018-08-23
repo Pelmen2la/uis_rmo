@@ -1,0 +1,26 @@
+.simple-list {
+    overflow: auto;
+    li {
+        height: 50px;
+        overflow: hidden;
+        box-sizing: border-box;
+        border-bottom: 1px solid $gray-lines-color;
+        > div {
+            height: 100%;
+            &.left-items {
+                float: left;
+                width: calc(100% - 50px);
+            }
+            &.right-items {
+                float: right;
+                width: 50px;
+            }
+            > img {
+                vertical-align: super;
+            }
+            .text-container {
+                display: inline-block;
+            }
+        }
+    }
+}
