@@ -3,6 +3,7 @@ import createReactClass from 'create-react-class';
 import Icon from './../common/Icon.jsx'
 import EditableField from './../common/EditableField.jsx'
 import BigTextField from './../common/BigTextField.jsx'
+import TagControl from './../common/TagControl.jsx'
 
 export default createReactClass({
     render: function() {
@@ -12,6 +13,7 @@ export default createReactClass({
             {getHeader()}
             {getMainPanel(contactData)}
             <div className="bottom-inputs-container">
+                <TagControl/>
                 <BigTextField placeholder="Введите комментарий"/>
             </div>
         </div>;

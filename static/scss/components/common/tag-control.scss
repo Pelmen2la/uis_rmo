@@ -1,0 +1,50 @@
+.tag-control-wrapper {
+    background: $main-background-color;
+    padding: 10px 0;
+    box-sizing: border-box;
+    position: relative;
+
+    .tags-container {
+        margin: 0 15px;
+        overflow: auto;
+        > * {
+            float: left;
+        }
+        input {
+            height: 30px;
+        }
+        .tag-container {
+            height: 30px;
+            padding: 8px 11px;
+            margin: 0 5px 5px 0;
+            box-sizing: border-box;
+            overflow: visible;
+            background: $dark-background-color;
+            border-radius: 15px;
+            img {
+                cursor: pointer;
+                margin-left: 8px;
+                margin-bottom: 1px;
+            }
+        }
+    }
+
+    .dropdown-tag-list {
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        z-index: 5;
+        li {
+            padding: 5px 15px;
+            width: 100%;
+            box-sizing: border-box;
+            background: white;
+            border: 1px solid $gray-lines-color;
+            border-top: none;
+            &.selected,
+            :hover {
+                background: $secondary-background-color;
+            }
+        }
+    }
+}
