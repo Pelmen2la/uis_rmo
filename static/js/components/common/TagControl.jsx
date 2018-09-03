@@ -26,6 +26,7 @@ class TagControl extends React.Component {
                 <div className="tags-container" ref={this.tagsContainerRef}>
                     {this.getTagsHtml(state.tags)}
                     <input type="text"
+                           placeholder="Введите тег"
                            ref={this.textInputRef}
                            value={state.text}
                            onChange={this.onInputChange.bind(this)}
@@ -120,6 +121,7 @@ class TagControl extends React.Component {
         var tags = this.state.tags;
         tags.splice(tagIndex, 1);
         this.setState({ tags: tags });
+        this.textInputRef.current.focus();
     }
 
     componentDidMount() {
