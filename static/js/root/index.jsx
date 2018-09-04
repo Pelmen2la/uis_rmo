@@ -46,37 +46,9 @@ store.dispatch(setState({
             isInCall: false,
             customBodyType: '',
             contactList: []
-        },
-        awayWindowState: {
-            awayStartTime: null,
-            choosenStatus: null
         }
     })
 );
-
-var lastActionTime = new Date(),
-    onWindowMouseMoveTimeout;
-
-window.addEventListener('mousemove', function() {
-    window.clearTimeout(onWindowMouseMoveTimeout);
-    onWindowMouseMoveTimeout = window.setTimeout(onWindowMouseMove, 500);
-});
-
-function onWindowMouseMove() {
-    if(store.getState().get('awayWindowState').get('awayStartTime')) {
-        return;
-    }
-
-    var now = new Date(),
-        diff = now.getTime() - lastActionTime.getTime();
-
-    if(diff > 5 * 60 * 1000) {
-        store.dispatch(setAwayWindowState('awayStartTime', new Date(lastActionTime)));
-    } else {
-        lastActionTime = now;
-    }
-};
-
 
 loadRecentCalls();
 loadContacts();

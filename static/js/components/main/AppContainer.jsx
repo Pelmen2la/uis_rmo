@@ -35,19 +35,14 @@ const AppContainerClass = createReactClass({
 
     getAwayWindow: function() {
         var props = this.props,
-            awayWindowState = props.awayWindowState;
-        if(!awayWindowState) {
+            operatorState = props.operatorStatusState;
+        if(!operatorState || ['available', 'do_not_disturb'].indexOf(operatorState.currentStatus) > -1) {
             return '';
         }
-        var time = awayWindowState.awayStartTime;
-        if(!time) {
-            return '';
-        } else {
-            return <AwayWindow
-                stateObj={props.awayWindowState}
-                currentStatus={props.operatorStatusState.currentStatus}
-            />
-        }
+        return <AwayWindow
+            setOperatorStatusFn={(status) => props.setOperatorStatusState('currentStatus', status)}
+            currentStatus={props.operatorStatusState.currentStatus}
+        />
     }
 });
 
@@ -59,8 +54,7 @@ function mapStateToProps(state) {
         leftPanelState: getStateToJsObj(state, 'leftPanelState'),
         contactsPageState: getStateToJsObj(state, 'contactsPageState'),
         contactEditPageState: getStateToJsObj(state, 'contactEditPageState'),
-        phonePanelState: getStateToJsObj(state, 'phonePanelState'),
-        awayWindowState: getStateToJsObj(state, 'awayWindowState')
+        phonePanelState: getStateToJsObj(state, 'phonePanelState')
     };
 }
 

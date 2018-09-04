@@ -9,6 +9,7 @@ class AwayWindow extends React.Component {
         super(props);
 
         this.state = {
+            awayStartTime: new Date(),
             now: new Date(),
             timerIntervalId: null,
             selectedStatus: props.currentStatus,
@@ -38,7 +39,7 @@ class AwayWindow extends React.Component {
                         <Icon iconPath="contacts_page/contact_ava_big.png" />
                         <span>
                             <span className="gray-text">Ваш статус:</span>
-                            {selectedStatus}
+                            {props.currentStatus}
                         </span>
                         {this.getAwayTime()}
                         <div className="change-status-container">
@@ -48,7 +49,7 @@ class AwayWindow extends React.Component {
                                 <Icon iconPath="common/expansion_panel/collapse_icon.png" imgClassName="dropdown-arrow" />
                                 {this.getStatusesDropdown()}
                             </div>
-                            <span className="continue-arrow"/>
+                            <span className="continue-arrow" onClick={this.onContinueBtnClick.bind(this)}/>
                         </div>
                     </div>
                 </div>
@@ -57,7 +58,7 @@ class AwayWindow extends React.Component {
     }
 
     getAwayTime() {
-        var awayTime = this.props.stateObj.awayStartTime,
+        var awayTime = this.state.awayStartTime,
             text = this.formatSeconds(Math.trunc((this.state.now.getTime() - awayTime.getTime()) / 1000));
         return <span>{text}</span>
     }
@@ -89,7 +90,7 @@ class AwayWindow extends React.Component {
     }
 
     onStatusComboClick() {
-        this.setState({ isStatusesDropdownVisible: !this.props.isStatusesDropdownVisible });
+        this.setState({ isStatusesDropdownVisible: !this.state.isStatusesDropdownVisible });
     }
 
     onStatusesDropdownItemClick(status, e) {
@@ -98,6 +99,10 @@ class AwayWindow extends React.Component {
             selectedStatus: status,
             isStatusesDropdownVisible: false
         });
+    }
+
+    onContinueBtnClick() {
+        this.props.setOperatorStatusFn(this.state.selectedStatus);
     }
 }
 

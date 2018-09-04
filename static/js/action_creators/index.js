@@ -59,11 +59,3 @@ export function setOperatorStatusState(propName, val) {
         val
     };
 };
-
-export function setAwayWindowState(propName, val) {
-    return {
-        type: 'SET_AWAY_WINDOW_STATE_PROPERTY',
-        propName,
-        val
-    };
-};

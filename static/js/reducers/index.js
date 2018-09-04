@@ -43,12 +43,6 @@ function setOperatorStatusState(state, propName, val) {
     return setState(state, { operatorStatusState: operatorStatusState });
 };
 
-function setAwayWindowState(state, propName, val) {
-    var awayWindowState = state.get('awayWindowState').toJS();
-    awayWindowState[propName] = val;
-    return setState(state, { awayWindowState: awayWindowState });
-};
-
 export default function(state=Map(), action='') {
     switch(action.type) {
         case 'SET_STATE':
@@ -67,7 +61,5 @@ export default function(state=Map(), action='') {
             return setPhonePanelStateProperty(state, action.propName, action.val);
         case 'SET_OPERATOR_STATUS_STATE':
             return setOperatorStatusState(state, action.propName, action.val);
-        case 'SET_AWAY_WINDOW_STATE_PROPERTY':
-            return setAwayWindowState(state, action.propName, action.val);
   }
 };
