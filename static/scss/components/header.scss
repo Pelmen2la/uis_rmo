@@ -1,11 +1,8 @@
 .app-header {
     overflow: visible;
     height: 54px;
-    .logo {
-        font-size: 1.6em; /* 24 / 15 */
-        line-height: 2.083333em; /* 50 / 24 */
+    .app-logo {
         margin-left: 24px;
-        display: inline-block;
         float: left;
     }
     .top-menu {
@@ -48,44 +45,16 @@
         position: relative;
         z-index: 20;
         opacity: 1;
-        .mini-status-icon {
+        > .status-icon {
             position: absolute;
             height: 12px;
             right: 10px;
             bottom: 0;
             opacity: 1;
         }
-        .statuses-popup {
-            height: 200px;
-            position: absolute;
+        .statuses-dropdown {
             width: 280px;
-            right: 0;
             top: calc(100% + 16px);
-            background: white;
-            border: 1px solid $gray-lines-color;
-            li {
-                width: 100%;
-                height: 40px;
-                padding: 8px 0 7px;
-                box-sizing: border-box;
-                border-bottom: 1px solid $gray-lines-color;
-                display: inline-block;
-                text-align: left;
-                &:hover,
-                &.selected {
-                    background: #FAFAFA;
-                }
-                * {
-                    vertical-align: middle;
-                }
-                img {
-                    margin: 0 15px;
-                    &.selected-icon {
-                        margin-top: 4px;
-                        float: right;
-                    }
-                }
-            }
         }
     }
 }

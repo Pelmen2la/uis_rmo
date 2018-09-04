@@ -4,7 +4,8 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {AppContainer} from '../components/main/AppContainer.jsx'
 import reducer from './../reducers/index.js';
-import {setState, setLeftPanelStateProperty, setContactsPageStateProperty, setPhonePanelStateProperty } from './../action_creators/index.js';
+import {setState, setLeftPanelStateProperty, setContactsPageStateProperty, setPhonePanelStateProperty,
+    setAwayWindowState } from './../action_creators/index.js';
 import utils from './../utils/appUtils.js';
 
 import './../../scss/index.scss'
@@ -22,7 +23,7 @@ ReactDOM.render(
 store.dispatch(setState({
         mainPageId: 'contact',
         operatorStatusState: {
-            currentStatus: 'active',
+            currentStatus: 'available',
             showStatusPopup: false
         },
         leftPanelState: {
@@ -45,9 +46,37 @@ store.dispatch(setState({
             isInCall: false,
             customBodyType: '',
             contactList: []
+        },
+        awayWindowState: {
+            awayStartTime: null,
+            choosenStatus: null
         }
     })
 );
+
+var lastActionTime = new Date(),
+    onWindowMouseMoveTimeout;
+
+window.addEventListener('mousemove', function() {
+    window.clearTimeout(onWindowMouseMoveTimeout);
+    onWindowMouseMoveTimeout = window.setTimeout(onWindowMouseMove, 500);
+});
+
+function onWindowMouseMove() {
+    if(store.getState().get('awayWindowState').get('awayStartTime')) {
+        return;
+    }
+
+    var now = new Date(),
+        diff = now.getTime() - lastActionTime.getTime();
+
+    if(diff > 5 * 60 * 1000) {
+        store.dispatch(setAwayWindowState('awayStartTime', new Date(lastActionTime)));
+    } else {
+        lastActionTime = now;
+    }
+};
+
 
 loadRecentCalls();
 loadContacts();
