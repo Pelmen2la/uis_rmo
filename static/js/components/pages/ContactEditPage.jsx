@@ -1,6 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import ContactForm from './ContactForm.jsx'
+import ContactForm from './contacts/ContactForm.jsx'
 import Icon from './../common/Icon.jsx'
 import SimpleGrid from './../common/SimpleGrid.jsx'
 import ExpansionPanel from './../common/ExpansionPanel.jsx'

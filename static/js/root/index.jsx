@@ -34,8 +34,19 @@ store.dispatch(setState({
             favoriteContactListData: [],
         },
         contactsPageState: {
-            selectedTabName: 'contacts',
-            gridData: []
+            selectedTabName: 'recent',
+            recentGridState: {
+                data: [],
+                searchText: ''
+            },
+            contactsGridState: {
+                data: [],
+                searchText: ''
+            },
+            employeesGridState: {
+                data: [],
+                searchText: ''
+            }
         },
         contactEditPageState: {
             contactData: {},
@@ -53,7 +64,7 @@ store.dispatch(setState({
 loadRecentCalls();
 loadContacts();
 loadSalesDepartmentCalls();
-loadContactsPageData();
+//loadContactsPageData();
 loadCallQueueGroups();
 //window.setInterval(loadRecentCalls, 2000);
 //window.setInterval(loadContacts, 2500);
@@ -97,7 +108,7 @@ function loadContactsPageData() {
     fetch('/fake_data/contacts').then(function(response) {
         return response.json();
     }).then(function(contactsList) {
-        store.dispatch(setContactsPageStateProperty('gridData', contactsList));
+        store.dispatch(setContactsPageStateProperty('recentGridState.data', contactsList));
     })
 };
 

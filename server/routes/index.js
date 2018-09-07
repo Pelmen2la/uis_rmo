@@ -2,7 +2,11 @@ var fs = require('fs'),
     utils = require('./../../static/js/utils/appUtils'),
     path = require('path');
 
-const contacts = getFakeContacts(utils.getRandomInt(10, 20));
+const contactsPageData = {
+    recentData: getFakeContacts(utils.getRandomInt(10, 20)),
+    contactsData: getFakeContacts(utils.getRandomInt(10, 20)),
+    employeesData: getFakeContacts(utils.getRandomInt(10, 20))
+};
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
@@ -27,12 +31,26 @@ module.exports = function(app) {
         res.json(getFakeFavoritesContacts(utils.getRandomInt(7, 12)));
     });
 
-    app.get('/fake_data/contacts', function(req, res) {
-        res.json(contacts);
+    app.get('/fake_data/get_grid_data/:gridType', function(req, res) {
+        var data = contactsPageData[req.params.gridType + 'Data'],
+            searchText = req.query.searchText;
+        if(searchText) {
+            data = data.filter((rec) => {
+                const props = ['name', 'surname', 'email', 'phone', 'companyName'];
+                searchText = searchText.toLowerCase();
+                for(var prop, i = 0; prop = props[i]; i++) {
+                    if(rec[prop] && rec[prop].toLowerCase().indexOf(searchText) > -1) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        }
+        res.json(data);
     });
 
     app.get('/fake_data/get_contact/:id', function(req, res) {
-        var contact = contacts.find((c) => c.id = req.params.id);
+        var contact = contactsPageData.contactsData.find((c) => c.id = req.params.id);
         contact.callsHistory = getFakeCalls(utils.getRandomInt(5, 10));
         res.json(contact);
     });

@@ -1,9 +1,9 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import Icon from './../common/Icon.jsx'
-import EditableField from './../common/EditableField.jsx'
-import BigTextField from './../common/BigTextField.jsx'
-import TagControl from './../common/TagControl.jsx'
+import Icon from './../../common/Icon.jsx'
+import EditableField from './../../common/EditableField.jsx'
+import BigTextField from './../../common/BigTextField.jsx'
+import TagControl from './../../common/TagControl.jsx'
 
 export default createReactClass({
     render: function() {

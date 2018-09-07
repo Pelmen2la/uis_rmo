@@ -16,7 +16,7 @@ function setLeftPanelStateProperty(state, propName, val) {
 
 function setContactsPageStateProperty(state, propName, val) {
     var contactsPageState = state.get('contactsPageState').toJS();
-    contactsPageState[propName] = val;
+    contactsPageState = setStateProp(contactsPageState, propName, val);
     return setState(state, { contactsPageState: contactsPageState });
 };
 
@@ -27,7 +27,7 @@ function openContactEditPage(state, contactData) {
 
 function setContactsEditPageStateProperty(state, propName, val) {
     var contactEditPageState = state.get('contactEditPageState').toJS();
-    contactEditPageState[propName] = val;
+    contactEditPageState = setStateProp(contactEditPageState, propName, val);
     return setState(state, { contactEditPageState: contactEditPageState });
 };
 
@@ -42,6 +42,20 @@ function setOperatorStatusState(state, propName, val) {
     operatorStatusState[propName] = val;
     return setState(state, { operatorStatusState: operatorStatusState });
 };
+
+function setStateProp(state, propName, val) {
+    if(propName.indexOf('.') === -1) {
+        state[propName] = val;
+    } else {
+        const path = propName.split('.');
+        var target = state;
+        for(var i = 0; i < path.length - 1; i++) {
+            target = target[path[i]];
+        }
+        target[path[path.length - 1]] = val;
+    }
+    return state;
+}
 
 export default function(state=Map(), action='') {
     switch(action.type) {
