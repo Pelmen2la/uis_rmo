@@ -111,8 +111,10 @@ function getFakeCalls(count) {
         callData.showName = flipCoin();
         callData.status = utils.getArrayRandom(['successful', 'unsuccessful', 'no_connection']);
         callData.time = utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9);
+        callData.comment = flipCoin() ? 'Тестовый коммент бла бла бла ' + i : '';
         if(flipCoin()) {
-            callData.tags = ['обработан', 'продажа', 'важный клиент', 'важный звонок'].splice(0, utils.getRandomInt(1, 4));
+            callData.tags = ['обработан', 'продажа', 'важный клиент', 'важный звонок', 'обработан', 'продажа',
+                'важный клиент', 'важный звонок', 'обработан', 'продажа', 'важный клиент', 'важный звонок'].splice(0, utils.getRandomInt(1, 12));
         } else {
             callData.tags = [];
         }

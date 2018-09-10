@@ -44,13 +44,21 @@ class EmployeesGrid extends React.Component {
                 onCellClick: this.props.onNameCellClick
             },
             {
+                dataIndex: 'comment',
+                width: 24,
+                renderer: (rec, val, cellCfg) => {
+                    var commentIconClassName = 'comment-icon ' + (val ? '' : 'empty');
+                    return <div className={commentIconClassName}>
+                        {val ? this.getCommentDropdown(val) : ''}
+                    </div>
+                }
+            },
+            {
                 dataIndex: 'tags',
+                width: 60,
                 renderer: (rec, val, cellCfg) => {
                     const tagsCount = val ? val.length : 0;
-                    var tagsElementClassName = 'tags-element';
-                    if(!tagsCount) {
-                        tagsElementClassName += ' ' + 'no-tags';
-                    }
+                    var tagsElementClassName = 'tags-element ' + (tagsCount ? '' : 'empty');
                     return <div className={tagsElementClassName}>
                         {tagsCount}
                         {tagsCount ? this.getTagsDropdown(val) : ''}
@@ -69,9 +77,13 @@ class EmployeesGrid extends React.Component {
 
     getTagsDropdown(tags) {
         const tagItems = tags.map((t, i) => <li key={i}>{t}</li>)
-        return <ul className="tags-dropdown">
+        return <ul className="dropdown">
             {tagItems}
         </ul>
+    }
+
+    getCommentDropdown(text) {
+        return <span className="dropdown">{text}</span>
     }
 }
 

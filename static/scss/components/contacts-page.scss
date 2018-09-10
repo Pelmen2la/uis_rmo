@@ -32,52 +32,79 @@
     }
 
     .recent-grid {
-        .tags-element {
-            min-width: 50px;
+        .tags-element,
+        .comment-icon {
+            background-position: 5px;
+            background-repeat: no-repeat;
+            border-radius: 12px;
+            border: 1px solid $gray-lines-color;
             height: 24px;
             display: inline-block;
-            font-size: $small-font-size;
-            border-radius: 15px;
-            border: 1px solid $gray-lines-color;
-            background-image: url("/resources/icons/common/tag.png");
-            background-position: 6px 6px;
-            background-repeat: no-repeat;
-            padding: 5px 10px 5px 25px;
             box-sizing: border-box;
             position: relative;
-            .no-tags {
+            &.empty {
                 opacity: 0.5;
             }
-            &:not(.no-tags):hover {
-                background-color: $dark-background-color;
-                border-color: $dark-background-color;
-                color: white;
-                background-image: url("/resources/icons/common/tag_white.png");
-
-                .tags-dropdown {
-                    display: initial;
-                }
+            &:not(.empty):hover {
+                background-color: $black-background-color;
+                border-color: $black-background-color;
             }
-
-            .tags-dropdown {
-                color: black;
+            .dropdown {
                 position: absolute;
                 top: 100%;
                 left: 0;
                 z-index: 5;
                 border: 1px solid $gray-lines-color;
                 display: none;
-                &:hover {
+                background: white;
+            }
+        }
+        .tags-element {
+            min-width: 50px;
+            font-size: $small-font-size;
+            background-image: url("/resources/icons/common/tag.png");
+            padding: 5px 10px 5px 25px;
+            &:not(.empty):hover {
+                color: white;
+                background-image: url("/resources/icons/common/tag_white.png");
+                .dropdown {
                     display: initial;
                 }
+            }
 
+            .dropdown {
+                overflow-y: auto;
+                max-height: 115px;
+                color: black;
                 li {
-                    padding: 14px;
-                    background: white;
+                    padding: 5px;
+                    padding-right: 10px;
                     white-space: nowrap;
                     &:not(:last-child) {
                         border-bottom: 1px solid $gray-lines-color;
                     }
+                }
+                &:hover {
+                    display: initial;
+                }
+            }
+        }
+
+        .comment-icon {
+            background-image: url("/resources/icons/common/comment.png");
+            width: 24px;
+            &:not(.empty):hover {
+                background-image: url("/resources/icons/common/comment_white.png");
+                .dropdown {
+                    display: inline-block;
+                }
+            }
+
+            .dropdown {
+                width: 200px;
+                padding: 5px;
+                &:hover {
+                    display: inline-block;
                 }
             }
         }
