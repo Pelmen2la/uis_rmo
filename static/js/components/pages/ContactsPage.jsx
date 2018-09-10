@@ -1,7 +1,8 @@
 import React from 'react';
 import TabControl from './../common/TabControl.jsx'
 import BigTextField from './../common/BigTextField.jsx'
-import ContactRecentGrid from './contacts/RecentGrid.jsx';
+import RecentGrid from './contacts/RecentGrid.jsx';
+import EmployeesGrid from './contacts/EmployeesGrid.jsx';
 
 class ContactsPage extends React.Component {
     componentDidMount() {
@@ -29,10 +30,7 @@ class ContactsPage extends React.Component {
                     delayedOnInputChange={this.onDelayedSearchInputChange.bind(this)}
                 />
             </div>
-            <ContactRecentGrid
-                data={stateObj[this.getCurrentGridStateKey()].data}
-                onNameCellClick={this.onRecentGridNameCellClick.bind(this)}
-            />
+            {this.getMainGrid()}
         </div>;
 
         function getTabsCfg() {
@@ -46,6 +44,23 @@ class ContactsPage extends React.Component {
 
     getCurrentGridStateKey() {
         return this.props.stateObj.selectedTabName + 'GridState';
+    }
+
+    getMainGrid() {
+        const props = this.props,
+            stateObj = props.stateObj,
+            gridName = stateObj.selectedTabName,
+            gridData = stateObj[this.getCurrentGridStateKey()].data;
+        if(gridName === 'recent') {
+            return <RecentGrid
+                data={gridData}
+                onNameCellClick={this.onRecentGridNameCellClick.bind(this)}
+            />
+        }
+        return <EmployeesGrid
+            data={gridData}
+            onNameCellClick={this.onRecentGridNameCellClick.bind(this)}
+        />
     }
 
     onTabClick(tabName) {

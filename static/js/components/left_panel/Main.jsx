@@ -1,6 +1,7 @@
 import React from 'react';
 import ExpansionList from './ExpansionList.jsx';
 import Icon from './../common/Icon.jsx';
+import FinishedCallIcon from './../common/FinishedCallIcon.jsx';
 import ExpansionPanel from './../common/ExpansionPanel.jsx';
 import createReactClass from 'create-react-class';
 
@@ -91,7 +92,7 @@ export default createReactClass({
         function getCallsListLeftItems(call) {
             var callIconName = [(call.isInternal ? 'internal' : 'external'), call.direction, 'call'].join('_');
             return <React.Fragment>
-                <Icon iconPath={'common/' + callIconName + '.png'}/>
+                <FinishedCallIcon callData={call}/>
                 <span className="text-container">
                     <span>{call.surname + ' ' + call.name}</span><br/>
                     <span className="phone-text gray-text">{call.phone}</span>

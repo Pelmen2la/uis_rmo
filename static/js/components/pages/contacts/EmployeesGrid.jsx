@@ -1,13 +1,11 @@
 import React from 'react';
 import SimpleGrid from './../../common/SimpleGrid.jsx'
 import Icon from './../../common/Icon.jsx'
-import FinishedCallIcon from './../../common/FinishedCallIcon.jsx'
 
 class EmployeesGrid extends React.Component {
     render() {
         const props = this.props;
         return <SimpleGrid
-            className="recent-grid"
             hideHeader={true}
             columnsCfg={this.getColumnsCfg()}
             data={props.data}
@@ -20,8 +18,9 @@ class EmployeesGrid extends React.Component {
                 dataIndex: 'isFavourite',
                 width: 20,
                 renderer: (rec, val, cellCfg) => {
+                    let iconName = 'star_' + (val ? 'black' : 'empty');
                     cellCfg.className = 'img-cell';
-                    return <FinishedCallIcon callData={rec}/>
+                    return <Icon imgClassName="star-icon" iconPath={'contacts_page/' + iconName + '.png'}/>
                 }
             },
             {
@@ -44,20 +43,6 @@ class EmployeesGrid extends React.Component {
                 onCellClick: this.props.onNameCellClick
             },
             {
-                dataIndex: 'tags',
-                renderer: (rec, val, cellCfg) => {
-                    const tagsCount = val ? val.length : 0;
-                    var tagsElementClassName = 'tags-element';
-                    if(!tagsCount) {
-                        tagsElementClassName += ' ' + 'no-tags';
-                    }
-                    return <div className={tagsElementClassName}>
-                        {tagsCount}
-                        {tagsCount ? this.getTagsDropdown(val) : ''}
-                    </div>
-                }
-            },
-            {
                 dataIndex: 'date',
                 renderer: (rec, val, cellCfg) => {
                     cellCfg.className = 'date-cell';
@@ -65,13 +50,6 @@ class EmployeesGrid extends React.Component {
                 }
             }
         ]
-    }
-
-    getTagsDropdown(tags) {
-        const tagItems = tags.map((t, i) => <li key={i}>{t}</li>)
-        return <ul className="tags-dropdown">
-            {tagItems}
-        </ul>
     }
 }
 

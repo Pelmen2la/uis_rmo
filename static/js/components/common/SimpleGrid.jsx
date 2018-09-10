@@ -6,7 +6,7 @@ class SimpleGrid extends React.Component {
         if(!props.data.length) {
             return '';
         }
-        return <table className="simple-grid">
+        return <table className={'simple-grid ' + (props.className || '')}>
             {props.hideHeader ? null : getHeaderRender(props.columnsCfg)}
             {getBodyRender(props.columnsCfg, props.data)}
         </table>;

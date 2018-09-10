@@ -3,7 +3,7 @@ var fs = require('fs'),
     path = require('path');
 
 const contactsPageData = {
-    recentData: getFakeContacts(utils.getRandomInt(10, 20)),
+    recentData: getFakeCalls(utils.getRandomInt(10, 20)),
     contactsData: getFakeContacts(utils.getRandomInt(10, 20)),
     employeesData: getFakeContacts(utils.getRandomInt(10, 20))
 };
@@ -109,8 +109,13 @@ function getFakeCalls(count) {
         callData.direction = flipCoin() ? 'in' : 'out';
         callData.isInternal = flipCoin();
         callData.showName = flipCoin();
-        callData.status = utils.getArrayRandom(['завершен', 'трансфер', 'обрыв связи']);
+        callData.status = utils.getArrayRandom(['successful', 'unsuccessful', 'no_connection']);
         callData.time = utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9);
+        if(flipCoin()) {
+            callData.tags = ['обработан', 'продажа', 'важный клиент', 'важный звонок'].splice(0, utils.getRandomInt(1, 4));
+        } else {
+            callData.tags = [];
+        }
         calls.push(callData);
     }
     return calls;

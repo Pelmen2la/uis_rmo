@@ -30,4 +30,57 @@
             margin: 10px 0;
         }
     }
+
+    .recent-grid {
+        .tags-element {
+            min-width: 50px;
+            height: 24px;
+            display: inline-block;
+            font-size: $small-font-size;
+            border-radius: 15px;
+            border: 1px solid $gray-lines-color;
+            background-image: url("/resources/icons/common/tag.png");
+            background-position: 6px 6px;
+            background-repeat: no-repeat;
+            padding: 5px 10px 5px 25px;
+            box-sizing: border-box;
+            position: relative;
+            .no-tags {
+                opacity: 0.5;
+            }
+            &:not(.no-tags):hover {
+                background-color: $dark-background-color;
+                border-color: $dark-background-color;
+                color: white;
+                background-image: url("/resources/icons/common/tag_white.png");
+
+                .tags-dropdown {
+                    display: initial;
+                }
+            }
+
+            .tags-dropdown {
+                color: black;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 5;
+                border: 1px solid $gray-lines-color;
+                display: none;
+                &:hover {
+                    display: initial;
+                }
+
+                li {
+                    padding: 14px;
+                    background: white;
+                    white-space: nowrap;
+                    &:not(:last-child) {
+                        border-bottom: 1px solid $gray-lines-color;
+                    }
+                }
+            }
+        }
+    }
 }
+
