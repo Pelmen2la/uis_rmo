@@ -9,6 +9,9 @@
             border-bottom: 1px solid $gray-lines-color;
             height: auto;
             vertical-align: middle;
+            &:last-child {
+                padding-right: 15px;
+            }
             &.img-cell {
                 line-height: 0;
             }
@@ -115,14 +118,12 @@
             background: $secondary-background-color;
         }
         .date-cell {
-            .time,
-            .date {
+            .time {
                 display: block;
-                margin-right: 15px;
             }
             .square-call-btn {
                 display: none;
-                margin: -10px 0 -12px;
+                margin: -10px -15px -12px 0;
                 background-position: 24px;
                 height: 60px;
                 width: 60px;
