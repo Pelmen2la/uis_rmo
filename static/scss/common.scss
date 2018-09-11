@@ -65,3 +65,17 @@ b {
 .simple-grid {
     width: 100%;
 }
+
+.square-call-btn {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: 18px;
+    background-image: url('/resources/icons/common/phone_icon.png');
+    &:hover {
+        background-color: $black-lines-color;
+        background-image: url('/resources/icons/common/phone_icon_white.png');
+    }
+}

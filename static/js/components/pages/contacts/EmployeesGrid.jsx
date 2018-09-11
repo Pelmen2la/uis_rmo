@@ -1,6 +1,6 @@
 import React from 'react';
 import SimpleGrid from './../../common/SimpleGrid.jsx'
-import Icon from './../../common/Icon.jsx'
+import Icon from './../../common/icons/Icon.jsx'
 
 class EmployeesGrid extends React.Component {
     render() {

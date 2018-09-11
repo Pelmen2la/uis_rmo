@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from './../common/Icon.jsx';
+import Icon from './../common/icons/Icon.jsx';
 
 class ExpansionPanel extends React.Component {
     render() {

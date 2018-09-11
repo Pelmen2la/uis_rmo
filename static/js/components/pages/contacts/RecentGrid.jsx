@@ -1,7 +1,7 @@
 import React from 'react';
 import SimpleGrid from './../../common/SimpleGrid.jsx'
-import Icon from './../../common/Icon.jsx'
-import FinishedCallIcon from './../../common/FinishedCallIcon.jsx'
+import Icon from './../../common/icons/Icon.jsx'
+import FinishedCallIcon from './../../common/icons/FinishedCallIcon.jsx'
 
 class EmployeesGrid extends React.Component {
     render() {
@@ -69,14 +69,18 @@ class EmployeesGrid extends React.Component {
                 dataIndex: 'date',
                 renderer: (rec, val, cellCfg) => {
                     cellCfg.className = 'date-cell';
-                    return val.split('T')[0];
+                    return <React.Fragment>
+                        <span className="time">{rec.time}</span>
+                        <span className="date">{val.split('T')[0]}</span>
+                        <span className="square-call-btn"></span>
+                    </React.Fragment>
                 }
             }
         ]
     }
 
     getTagsDropdown(tags) {
-        const tagItems = tags.map((t, i) => <li key={i}>{t}</li>)
+        const tagItems = tags.map((t, i) => <li key={i}>{t}</li>);
         return <ul className="dropdown">
             {tagItems}
         </ul>

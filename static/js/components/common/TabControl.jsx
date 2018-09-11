@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from './../common/Icon.jsx';
+import Icon from './../common/icons/Icon.jsx';
 import createReactClass from 'create-react-class';
 
 export default createReactClass({

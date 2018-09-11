@@ -1,6 +1,6 @@
 import React from 'react';
-import Icon from './Icon.jsx';
-import StatusIcon from './StatusIcon.jsx';
+import Icon from './icons/Icon.jsx';
+import StatusIcon from './icons/StatusIcon.jsx';
 
 class StatusesDropdown extends React.Component {
     render() {
@@ -22,7 +22,7 @@ class StatusesDropdown extends React.Component {
                     <StatusIcon status={s.name} size="24"/>
                     <span>{s.text}</span>
                     {isSelected ?
-                        <Icon imgClassName="selected-icon" iconPath={'header/statuses/selected_status_icon.png'}/> : ''}
+                        <Icon imgClassName="selected-icon" iconPath={'common/statuses/selected_status_icon.png'}/> : ''}
                 </li>
             })}
         </ul>

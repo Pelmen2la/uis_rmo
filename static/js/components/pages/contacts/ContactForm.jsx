@@ -1,6 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import Icon from './../../common/Icon.jsx'
+import Icon from './../../common/icons/Icon.jsx'
 import EditableField from './../../common/EditableField.jsx'
 import BigTextField from './../../common/BigTextField.jsx'
 import TagControl from './../../common/TagControl.jsx'

@@ -1,6 +1,6 @@
 import React from 'react';
-import Icon from './../common/Icon.jsx';
-import StatusIcon from './../common/StatusIcon.jsx';
+import Icon from './../common/icons/Icon.jsx';
+import StatusIcon from './../common/icons/StatusIcon.jsx';
 import StatusesDropdown from './../common/StatusesDropdown.jsx';
 import Logo from './../common/Logo.jsx';
 

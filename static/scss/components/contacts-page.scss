@@ -9,9 +9,6 @@
             border-bottom: 1px solid $gray-lines-color;
             height: auto;
             vertical-align: middle;
-            &:last-child {
-                padding-right: 15px;
-            }
             &.img-cell {
                 line-height: 0;
             }
@@ -23,7 +20,12 @@
             }
             &.date-cell {
                 text-align: right;
-                color: $gray-font-color;
+                .date {
+                    color: $gray-font-color;
+                    font-size: $small-font-size;
+                    display: inline-block;
+                    margin-top: 5px;
+                }
             }
         }
         .star-icon {
@@ -104,6 +106,34 @@
                 width: 200px;
                 padding: 5px;
                 &:hover {
+                    display: inline-block;
+                }
+            }
+        }
+
+        tr:hover {
+            background: $secondary-background-color;
+        }
+        .date-cell {
+            .time,
+            .date {
+                display: block;
+                margin-right: 15px;
+            }
+            .square-call-btn {
+                display: none;
+                margin: -10px 0 -12px;
+                background-position: 24px;
+                height: 60px;
+                width: 60px;
+                border-left: 1px solid $gray-lines-color;
+            }
+            &:hover {
+                .time,
+                .date {
+                    display: none;
+                }
+                .square-call-btn {
                     display: inline-block;
                 }
             }

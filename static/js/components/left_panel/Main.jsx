@@ -1,7 +1,7 @@
 import React from 'react';
 import ExpansionList from './ExpansionList.jsx';
-import Icon from './../common/Icon.jsx';
-import FinishedCallIcon from './../common/FinishedCallIcon.jsx';
+import Icon from './../common/icons/Icon.jsx';
+import FinishedCallIcon from './../common/icons/FinishedCallIcon.jsx';
 import ExpansionPanel from './../common/ExpansionPanel.jsx';
 import createReactClass from 'create-react-class';
 
@@ -106,7 +106,7 @@ export default createReactClass({
             </React.Fragment>
         };
         function getCallIconHtml() {
-            return <span className="call-icon"></span>
+            return <span className="square-call-btn"></span>
         };
     }
 });

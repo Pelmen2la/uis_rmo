@@ -10,7 +10,7 @@
             padding: 5px 0;
             &:hover {
                 background: $main-background-color;
-                .call-icon {
+                .square-call-btn {
                     display: inline-block;
                 }
             }
@@ -24,19 +24,9 @@
                     font-size: $small-font-size;
                 }
             }
-            .call-icon {
-                height: 50px;
-                width: 50px;
+            .square-call-btn {
                 display: none;
                 margin-top: -5px;
-                cursor: pointer;
-                background-repeat: no-repeat;
-                background-position: 18px;
-                background-image: url('/resources/icons/common/phone_icon.png');
-                &:hover {
-                    background-color: $black-lines-color;
-                    background-image: url('/resources/icons/common/phone_icon_white.png');
-                }
             }
         }
     }
