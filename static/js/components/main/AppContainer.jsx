@@ -3,6 +3,7 @@ import createReactClass from 'create-react-class';
 import AppHeader from './Header.jsx'
 import BodyContainer from './BodyContainer.jsx'
 import AwayWindow from './AwayWindow.jsx'
+import IncomingCallsList from './IncomingCallsList.jsx'
 import {connect} from 'react-redux';
 import * as actionCreators from './../../action_creators/index.js';
 
@@ -30,8 +31,10 @@ const AppContainerClass = createReactClass({
                 phonePanelChangeStateFn={props.setPhonePanelStateProperty}
             />
             {this.getAwayWindow()}
+            {this.getIncomingCallContainer(props.incomingCallState ? props.incomingCallState.callsData : [])}
         </React.Fragment>
     },
+
 
     getAwayWindow: function() {
         var props = this.props,
@@ -43,6 +46,10 @@ const AppContainerClass = createReactClass({
             setOperatorStatusFn={(status) => props.setOperatorStatusState('currentStatus', status)}
             currentStatus={props.operatorStatusState.currentStatus}
         />
+    },
+
+    getIncomingCallContainer: function(callsData) {
+        return <IncomingCallsList callsData={callsData} />
     }
 });
 
@@ -54,7 +61,8 @@ function mapStateToProps(state) {
         leftPanelState: getStateToJsObj(state, 'leftPanelState'),
         contactsPageState: getStateToJsObj(state, 'contactsPageState'),
         contactEditPageState: getStateToJsObj(state, 'contactEditPageState'),
-        phonePanelState: getStateToJsObj(state, 'phonePanelState')
+        phonePanelState: getStateToJsObj(state, 'phonePanelState'),
+        incomingCallState: getStateToJsObj(state, 'incomingCallState')
     };
 }
 

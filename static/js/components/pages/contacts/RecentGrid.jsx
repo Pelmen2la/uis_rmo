@@ -1,7 +1,7 @@
 import React from 'react';
 import SimpleGrid from './../../common/SimpleGrid.jsx'
 import Icon from './../../common/icons/Icon.jsx'
-import FinishedCallIcon from './../../common/icons/FinishedCallIcon.jsx'
+import CallIcon from './../../common/icons/CallIcon.jsx'
 
 class EmployeesGrid extends React.Component {
     render() {
@@ -21,7 +21,7 @@ class EmployeesGrid extends React.Component {
                 width: 20,
                 renderer: (rec, val, cellCfg) => {
                     cellCfg.className = 'img-cell';
-                    return <FinishedCallIcon callData={rec}/>
+                    return <CallIcon callData={rec}/>
                 }
             },
             {

@@ -9,6 +9,8 @@ const contactsPageData = {
 };
 
 module.exports = function(app) {
+    require('./socket')(app);
+
     app.get('/', function(req, res) {
         fs.readFile(path.join(global.appRoot, '/static/html/index.html'), 'utf8', function(err, indexPageHtml) {
             res.send(indexPageHtml);
@@ -107,7 +109,7 @@ function getFakeCalls(count) {
         date.setTime(date.getTime() - utils.getRandomInt(0 , 3) * 60 * 60 * 24 * 1000);
         callData.date = date;
         callData.direction = flipCoin() ? 'in' : 'out';
-        callData.isInternal = flipCoin();
+        callData.is_internal = flipCoin();
         callData.showName = flipCoin();
         callData.status = utils.getArrayRandom(['successful', 'unsuccessful', 'no_connection']);
         callData.time = utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9);

@@ -43,6 +43,12 @@ function setOperatorStatusState(state, propName, val) {
     return setState(state, { operatorStatusState: operatorStatusState });
 };
 
+function setIncomingCallState(state, propName, val) {
+    var incomingCallState = state.get('incomingCallState').toJS();
+    incomingCallState[propName] = val;
+    return setState(state, { incomingCallState: incomingCallState });
+};
+
 function setStateProp(state, propName, val) {
     if(propName.indexOf('.') === -1) {
         state[propName] = val;
@@ -75,5 +81,7 @@ export default function(state=Map(), action='') {
             return setPhonePanelStateProperty(state, action.propName, action.val);
         case 'SET_OPERATOR_STATUS_STATE':
             return setOperatorStatusState(state, action.propName, action.val);
+        case 'SET_INCOMING_CALL_STATE':
+            return setIncomingCallState(state, action.propName, action.val);
   }
 };

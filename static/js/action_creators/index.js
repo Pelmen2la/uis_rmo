@@ -59,3 +59,11 @@ export function setOperatorStatusState(propName, val) {
         val
     };
 };
+
+export function setIncomingCallState(propName, val) {
+    return {
+        type: 'SET_INCOMING_CALL_STATE',
+        propName,
+        val
+    };
+};

@@ -1,0 +1,71 @@
+.incoming-calls-list {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    border-top: $gray-lines-color;
+
+    li {
+        height: 70px;
+        background: white;
+        width: 100%;
+        border-bottom: 1px solid $gray-lines-color;
+        .common-info-block {
+            height: 70px;
+            padding: 14px 15px 0 41px;
+            box-sizing: border-box;
+            width: 165px;
+            float: left;
+            position: relative;
+            border-right: 1px solid $gray-lines-color;
+
+            img {
+                position: absolute;
+                top: 18px;
+                left: 15px;
+            }
+            b {
+                display: inline-block;
+                margin-bottom: 2px;
+            }
+        }
+
+        .avatar {
+            float: left;
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            background: $dark-background-color;
+            border-radius: 20px;
+            margin: 15px 16px;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-info-container {
+            padding: 5px 0;
+            float: left;
+            > * {
+                display: block;
+                margin-bottom: 3px;
+            }
+            span {
+                font-size: $small-font-size;
+            }
+        }
+
+        .ac-block {
+            float: left;
+            padding: 8px 0;
+            margin-left: 40px;
+            span {
+                display: block;
+                margin-bottom: 3px;
+                img {
+                    vertical-align: middle;
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+}
