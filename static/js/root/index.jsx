@@ -6,8 +6,8 @@ import {AppContainer} from '../components/main/AppContainer.jsx'
 import reducer from './../reducers/index.js';
 import {setState, setLeftPanelStateProperty, setContactsPageStateProperty, setPhonePanelStateProperty,
     setAwayWindowState, setIncomingCallsState } from './../action_creators/index.js';
-import utils from './../utils/appUtils.js';
-import socket from './../socket/index.js';
+import socket from '../helpers/socket.js';
+import {sendNotification} from '../helpers/notifications.js';
 
 import './../../scss/index.scss'
 
@@ -66,8 +66,14 @@ store.dispatch(setState({
 
 socket.on('event', function(eventProps) {
     if(eventProps.name === 'call_proceeding') {
-        var callsData = store.getState().toJS().incomingCallsState.callsData;
-        callsData.push(eventProps.data);
+        var callData = eventProps.data,
+            callsData = store.getState().toJS().incomingCallsState.callsData;
+        sendNotification({
+            iconUrl: '/resources/icons/phone_panel/call_button.png',
+            title: 'Входящий звонок',
+            text: 'Входящий звонок от ' + callData.contact_phone_number,
+        });
+        callsData.push(callData);
         store.dispatch(setIncomingCallsState('callsData', callsData));
     }
 });
