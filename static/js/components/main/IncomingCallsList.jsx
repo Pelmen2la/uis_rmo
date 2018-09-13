@@ -81,11 +81,11 @@ class IncomingCallsList extends React.Component {
     getHandleCallBtn(action, callId) {
         return <div
             className={'handle-call-button ' + action}
-            onClick={() => this.onHandleCallBtnclick(action, callId)}
+            onClick={() => this.onHandleCallBtnClick(action, callId)}
         />
     }
 
-    onHandleCallBtnclick(action, callId) {
+    onHandleCallBtnClick(action, callId) {
         var calls = this.props.callsData,
             targetCall = calls.find((c) => c.call_session_id === callId);
         calls.splice(calls.indexOf(targetCall), 1);
