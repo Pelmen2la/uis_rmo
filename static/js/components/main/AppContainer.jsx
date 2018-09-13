@@ -31,7 +31,7 @@ const AppContainerClass = createReactClass({
                 phonePanelChangeStateFn={props.setPhonePanelStateProperty}
             />
             {this.getAwayWindow()}
-            {this.getIncomingCallContainer(props.incomingCallState ? props.incomingCallState.callsData : [])}
+            {this.getIncomingCallContainer(props.incomingCallsState ? props.incomingCallsState.callsData : [])}
         </React.Fragment>
     },
 
@@ -49,7 +49,10 @@ const AppContainerClass = createReactClass({
     },
 
     getIncomingCallContainer: function(callsData) {
-        return <IncomingCallsList callsData={callsData} />
+        return <IncomingCallsList
+            callsData={callsData}
+            changeIncomingCallsStateFn={this.props.setIncomingCallsState}
+        />
     }
 });
 
@@ -62,7 +65,7 @@ function mapStateToProps(state) {
         contactsPageState: getStateToJsObj(state, 'contactsPageState'),
         contactEditPageState: getStateToJsObj(state, 'contactEditPageState'),
         phonePanelState: getStateToJsObj(state, 'phonePanelState'),
-        incomingCallState: getStateToJsObj(state, 'incomingCallState')
+        incomingCallsState: getStateToJsObj(state, 'incomingCallsState')
     };
 }
 

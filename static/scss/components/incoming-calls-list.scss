@@ -1,17 +1,20 @@
+$incoming-calls-list-height: 70px;
+
 .incoming-calls-list {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 80%;
+    max-width: 1030px;
     border-top: $gray-lines-color;
 
     li {
-        height: 70px;
+        height: $incoming-calls-list-height;
         background: white;
         width: 100%;
         border-bottom: 1px solid $gray-lines-color;
         .common-info-block {
-            height: 70px;
+            height: $incoming-calls-list-height;
             padding: 14px 15px 0 41px;
             box-sizing: border-box;
             width: 165px;
@@ -65,6 +68,23 @@
                     vertical-align: middle;
                     margin-right: 8px;
                 }
+            }
+        }
+
+        .handle-call-button {
+            height: $incoming-calls-list-height;
+            width: $incoming-calls-list-height;
+            float: right;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: 21px;
+            &.accept {
+                background-color: $black-background-color;
+                background-image: url("/resources/icons/phone_panel/call_button.png");
+            }
+            &.reject {
+                background-color: $gray-background-color;
+                background-image: url("/resources/icons/phone_panel/stop_call_button.png");
             }
         }
     }

@@ -28,9 +28,10 @@ class IncomingCallsList extends React.Component {
                     is_internal: callData.is_internal,
                     status: 'successful'
                 },
+                callId = callData.call_session_id,
                 splittedFullName = callData.employee_full_name.split(' ');
 
-            return <li>
+            return <li key={callId}>
                 <div className="common-info-block">
                     <CallIcon callData={callIconData}/>
                     <b>Входящий</b><br/>
@@ -46,6 +47,8 @@ class IncomingCallsList extends React.Component {
                     <span className="gray-text">VIP клиенты, ПМ Алексеев Антон</span>
                 </p>
                 {this.getCallACBlock(callData)}
+                {this.getHandleCallBtn('accept', callId)}
+                {this.getHandleCallBtn('reject', callId)}
             </li>
         });
     }
@@ -73,6 +76,20 @@ class IncomingCallsList extends React.Component {
         return <div className="ac-block">
             {items}
         </div>
+    }
+
+    getHandleCallBtn(action, callId) {
+        return <div
+            className={'handle-call-button ' + action}
+            onClick={() => this.onHandleCallBtnclick(action, callId)}
+        />
+    }
+
+    onHandleCallBtnclick(action, callId) {
+        var calls = this.props.callsData,
+            targetCall = calls.find((c) => c.call_session_id === callId);
+        calls.splice(calls.indexOf(targetCall), 1);
+        this.props.changeIncomingCallsStateFn('callsData', calls);
     }
 }
 

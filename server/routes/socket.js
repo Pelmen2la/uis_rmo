@@ -1,4 +1,5 @@
-var io = require('socket.io').listen(8070);
+var io = require('socket.io').listen(8070),
+     utils = require('./../../static/js/utils/appUtils');
 
 module.exports = function(app) {
     io.sockets.on('connection', (socket) => {
@@ -19,7 +20,7 @@ function getTestIncomingCallData() {
         id: 107477414,
         name: 'call_proceeding',
         data: {
-            call_session_id: 548178456,
+            call_session_id: getRandomCallSessionId(),
             communication_id: 548178456,
             start_time: '2018-08-09 15:02:30.267',
             direction: 'in',
@@ -36,4 +37,12 @@ function getTestIncomingCallData() {
             virtual_phone_number: '74951068263'
         }
     }
+}
+
+function getRandomCallSessionId() {
+    var id = '';
+    for(var i = 0; i < 9; i++) {
+        id += utils.getRandomInt(0, 9);
+    }
+    return id;
 }

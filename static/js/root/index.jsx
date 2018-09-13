@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import {AppContainer} from '../components/main/AppContainer.jsx'
 import reducer from './../reducers/index.js';
 import {setState, setLeftPanelStateProperty, setContactsPageStateProperty, setPhonePanelStateProperty,
-    setAwayWindowState, setIncomingCallState } from './../action_creators/index.js';
+    setAwayWindowState, setIncomingCallsState } from './../action_creators/index.js';
 import utils from './../utils/appUtils.js';
 import socket from './../socket/index.js';
 
@@ -58,7 +58,7 @@ store.dispatch(setState({
             customBodyType: '',
             contactList: []
         },
-        incomingCallState: {
+        incomingCallsState: {
             callsData: []
         }
     })
@@ -66,9 +66,9 @@ store.dispatch(setState({
 
 socket.on('event', function(eventProps) {
     if(eventProps.name === 'call_proceeding') {
-        var callsData = store.getState().toJS().incomingCallState.callsData;
+        var callsData = store.getState().toJS().incomingCallsState.callsData;
         callsData.push(eventProps.data);
-        store.dispatch(setIncomingCallState('callsData', callsData));
+        store.dispatch(setIncomingCallsState('callsData', callsData));
     }
 });
 
