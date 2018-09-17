@@ -77,16 +77,5 @@
 .contact-edit-page {
     .expansion-panel-container {
         border-top: 5px solid $gray-lines-color;
-        .simple-grid-container {
-            td {
-                padding: 5px 0 5px 1em;
-                border-bottom: 1px solid $gray-lines-color;
-
-                &.date-cell {
-                    text-align: right;
-                    padding-right: 10px;
-                }
-            }
-        }
     }
 }

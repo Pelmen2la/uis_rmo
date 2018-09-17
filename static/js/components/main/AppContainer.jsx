@@ -49,9 +49,11 @@ const AppContainerClass = createReactClass({
     },
 
     getIncomingCallContainer: function(callsData) {
+        var props = this.props;
         return <IncomingCallsList
             callsData={callsData}
-            changeIncomingCallsStateFn={this.props.setIncomingCallsState}
+            changeIncomingCallsStateFn={props.setIncomingCallsState}
+            openContactEditPageFn={props.openContactEditPage}
         />
     }
 });

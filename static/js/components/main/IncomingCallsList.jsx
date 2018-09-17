@@ -86,10 +86,16 @@ class IncomingCallsList extends React.Component {
     }
 
     onHandleCallBtnClick(action, callId) {
-        var calls = this.props.callsData,
+        var props = this.props,
+            calls = this.props.callsData,
             targetCall = calls.find((c) => c.call_session_id === callId);
         calls.splice(calls.indexOf(targetCall), 1);
-        this.props.changeIncomingCallsStateFn('callsData', calls);
+        props.changeIncomingCallsStateFn('callsData', calls);
+        if(action == 'accept') {
+            fetch('/fake_data/get_contact/' + targetCall.contact_id).then((r) => r.json()).then((contactData) => {
+                props.openContactEditPageFn(contactData);
+            });
+        }
     }
 }
 

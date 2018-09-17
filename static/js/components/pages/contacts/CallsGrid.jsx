@@ -3,11 +3,11 @@ import SimpleGrid from './../../common/SimpleGrid.jsx'
 import Icon from './../../common/icons/Icon.jsx'
 import CallIcon from './../../common/icons/CallIcon.jsx'
 
-class EmployeesGrid extends React.Component {
+class CallsGrid extends React.Component {
     render() {
         const props = this.props;
         return <SimpleGrid
-            className="recent-grid"
+            className="calls-grid"
             hideHeader={true}
             columnsCfg={this.getColumnsCfg()}
             data={props.data}
@@ -91,4 +91,4 @@ class EmployeesGrid extends React.Component {
     }
 }
 
-export default EmployeesGrid;
+export default CallsGrid;

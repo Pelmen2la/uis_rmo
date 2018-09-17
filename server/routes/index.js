@@ -3,9 +3,9 @@ var fs = require('fs'),
     path = require('path');
 
 const contactsPageData = {
-    recentData: getFakeCalls(utils.getRandomInt(10, 20)),
-    contactsData: getFakeContacts(utils.getRandomInt(10, 20)),
-    employeesData: getFakeContacts(utils.getRandomInt(10, 20))
+    recentData: getFakeCalls(utils.getRandomInt(15, 20)),
+    contactsData: getFakeContacts(utils.getRandomInt(15, 20)),
+    employeesData: getFakeContacts(utils.getRandomInt(15, 20))
 };
 
 module.exports = function(app) {
@@ -56,6 +56,10 @@ module.exports = function(app) {
         contact.callsHistory = getFakeCalls(utils.getRandomInt(5, 10));
         res.json(contact);
     });
+};
+
+module.exports.getRandomContact = function() {
+    return utils.getArrayRandom(contactsPageData.contactsData);
 };
 
 function flipCoin() {

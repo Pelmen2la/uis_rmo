@@ -1,7 +1,7 @@
 import React from 'react';
 import TabControl from './../common/TabControl.jsx'
 import BigTextField from './../common/BigTextField.jsx'
-import RecentGrid from './contacts/RecentGrid.jsx';
+import CallsGrid from './contacts/CallsGrid.jsx';
 import EmployeesGrid from './contacts/EmployeesGrid.jsx';
 
 class ContactsPage extends React.Component {
@@ -52,14 +52,14 @@ class ContactsPage extends React.Component {
             gridName = stateObj.selectedTabName,
             gridData = stateObj[this.getCurrentGridStateKey()].data;
         if(gridName === 'recent') {
-            return <RecentGrid
+            return <CallsGrid
                 data={gridData}
-                onNameCellClick={this.onRecentGridNameCellClick.bind(this)}
+                onNameCellClick={this.onCallsGridNameCellClick.bind(this)}
             />
         }
         return <EmployeesGrid
             data={gridData}
-            onNameCellClick={this.onRecentGridNameCellClick.bind(this)}
+            onNameCellClick={this.onCallsGridNameCellClick.bind(this)}
         />
     }
 
@@ -99,7 +99,7 @@ class ContactsPage extends React.Component {
         });
     }
 
-    onRecentGridNameCellClick(record) {
+    onCallsGridNameCellClick(record) {
         const props = this.props;
         fetch('/fake_data/get_contact/' + record.id).then((r) => r.json()).then((contactData) => {
             props.openContactEditPageFn(contactData);

@@ -3,6 +3,10 @@
         padding: 1em;
         border-bottom: 1px solid $gray-lines-color;
     }
+}
+
+.contacts-page,
+.contact-edit-page {
     .simple-grid {
         td {
             padding: 10px 0 10px 15px;
@@ -36,7 +40,7 @@
         }
     }
 
-    .recent-grid {
+    .calls-grid {
         .tags-element,
         .comment-icon {
             background-position: 5px;
@@ -141,4 +145,3 @@
         }
     }
 }
-
