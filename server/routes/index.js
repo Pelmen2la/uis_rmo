@@ -67,6 +67,13 @@ module.exports = function(app) {
     app.get('/fake_data/get_number_info/:number', function(req, res) {
         res.json(getFakeFavoritesContacts(utils.getRandomInt(7, 12)));
     });
+
+    app.get('/fake_data/try_get_contact_by_number/:phoneNumber', function(req, res) {
+        var phoneNumber = req.params.phoneNumber,
+            contact = contactsPageData.contactsData.find((c) => c.phone === phoneNumber),
+            employee = contactsPageData.employeesData.find((e) => e.phone === phoneNumber);
+        res.json(contact || employee || {});
+    });
 };
 
 module.exports.getFakeCall = getFakeCall;
@@ -116,20 +123,20 @@ function getFakePerson(type) {
 };
 
 function getFakeCalls(count, withContactsPagePerson) {
-    var calls = [],
-        callOwner;
+    var calls = [];
     for(var i = 0; i < count; i++) {
-        if(withContactsPagePerson) {
-            var personList = flipCoin() ? contactsPageData.contactsData : contactsPageData.employeesData;
-            callOwner = utils.getArrayRandom(personList);
-        }
-        calls.push(getFakeCall(callOwner));
+        calls.push(getFakeCall(withContactsPagePerson ? getRandomContactsPagePerson() : null));
     }
     return calls;
 };
 
+function getRandomContactsPagePerson() {
+    var personList = flipCoin() ? contactsPageData.contactsData : contactsPageData.employeesData;
+    return utils.getArrayRandom(personList);
+};
+
 function getFakeCall(callOwner) {
-    callOwner = callOwner || getFakePerson();
+    callOwner = callOwner || getRandomContactsPagePerson();
     var isContact = callOwner.type === 'contact',
         date = new Date();
     date.setTime(date.getTime() - utils.getRandomInt(0, 3) * 60 * 60 * 24 * 1000);

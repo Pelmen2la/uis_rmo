@@ -92,7 +92,8 @@ class IncomingCallsList extends React.Component {
         calls.splice(calls.indexOf(targetCall), 1);
         props.changeIncomingCallsStateFn('callsData', calls);
         if(action == 'accept') {
-            fetch('/fake_data/get_contact/' + targetCall.contact_id).then((r) => r.json()).then((contactData) => {
+            var personProps = Utils.getCallPersonProps(targetCall);
+            fetch('/fake_data/get_' + personProps.type + '/' + personProps.id).then((r) => r.json()).then((contactData) => {
                 props.openContactEditPageFn(contactData);
             });
         }

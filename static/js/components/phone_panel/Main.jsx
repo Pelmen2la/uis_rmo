@@ -35,9 +35,10 @@ export default createReactClass({
         function onCallButtonClick() {
             if(!stateObj.isInCall) {
                 var number = props.stateObj.phoneNumber;
-                fetch('/fake_data/get_number_info/' + number).then(function(response) {
-                    return response.json();
-                }).then(function(recentCallsList) {
+                fetch('/fake_data/try_get_contact_by_number/' + number).then((r) => r.json()).then(function(contactData) {
+                    if(contactData.id) {
+                        props.openContactEditPageFn(contactData);
+                    }
                 })
             }
             props.changeStateFn('isInCall', !stateObj.isInCall)

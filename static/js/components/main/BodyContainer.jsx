@@ -20,6 +20,7 @@ export default createReactClass({
             <PhonePanel
                 stateObj={props.phonePanelState}
                 changeStateFn={props.phonePanelChangeStateFn}
+                openContactEditPageFn={props.openContactEditPageFn}
             />
         </div>;
 
