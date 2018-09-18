@@ -56,11 +56,13 @@ module.exports = function(app) {
         contact.callsHistory = getFakeCalls(utils.getRandomInt(5, 10));
         res.json(contact);
     });
+
+    app.get('/fake_data/get_number_info/:number', function(req, res) {
+        res.json(getFakeFavoritesContacts(utils.getRandomInt(7, 12)));
+    });
 };
 
-module.exports.getRandomContact = function() {
-    return utils.getArrayRandom(contactsPageData.contactsData);
-};
+module.exports.getFakeCall = getFakeCall;
 
 function flipCoin() {
     return Math.random() >= 0.5;
@@ -108,26 +110,47 @@ function getFakeEmployee() {
 function getFakeCalls(count) {
     var calls = [];
     for(var i = 0; i < count; i++) {
-        var callData = getFakeEmployee(),
+        calls.push(getFakeCall());
+    }
+    return calls;
+};
+
+function getFakeCall() {
+        var callOwner = getFakeEmployee(),
+            isContact = flipCoin(),
             date = new Date();
         date.setTime(date.getTime() - utils.getRandomInt(0 , 3) * 60 * 60 * 24 * 1000);
-        callData.date = date;
-        callData.direction = flipCoin() ? 'in' : 'out';
-        callData.is_internal = flipCoin();
-        callData.showName = flipCoin();
-        callData.status = utils.getArrayRandom(['successful', 'unsuccessful', 'no_connection']);
-        callData.time = utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9);
-        callData.comment = flipCoin() ? 'Тестовый коммент бла бла бла ' + i : '';
+        var callData = {
+            date: date,
+            call_session_id: getUid(),
+            communication_id: getUid(),
+            start_time: utils.getRandomInt(0, 9) + ':' + utils.getRandomInt(0, 9) + utils.getRandomInt(0, 9),
+            direction: flipCoin() ? 'in' : 'out',
+            call_source: 'sitephone',
+            is_internal: flipCoin(),
+            site_domain_name: utils.getArrayRandom(['an-diz.ru', 'test-site.ru', 'comagic.ru', 'uiscom.ru']),
+            contact_id: isContact ? callOwner.id : null,
+            contact_phone_number: isContact ? callOwner.phone : null,
+            contact_full_name: isContact ? callOwner.name + ' ' + callOwner.surname : null,
+            campaign_id: getUid(),
+            campaign_name: utils.getArrayRandom(['Прямые переходы', 'Переходы из yandex', 'Google adwords']),
+            employee_id: isContact ? null : callOwner.id,
+            employee_full_name: isContact ? null: callOwner.name + ' ' + callOwner.surname,
+            virtual_phone_number: isContact ? null: callOwner.phone,
+            status: utils.getArrayRandom(['successful', 'unsuccessful', 'no_connection']),
+            comment: flipCoin() ? 'Тестовый коммент бла бла бла' : '',
+            companyName: isContact ? '' : callOwner.companyName,
+            employeePosition: isContact ? '' : callOwner.position
+        };
+
         if(flipCoin()) {
             callData.tags = ['обработан', 'продажа', 'важный клиент', 'важный звонок', 'обработан', 'продажа',
                 'важный клиент', 'важный звонок', 'обработан', 'продажа', 'важный клиент', 'важный звонок'].splice(0, utils.getRandomInt(1, 12));
         } else {
             callData.tags = [];
         }
-        calls.push(callData);
-    }
-    return calls;
-};
+        return callData;
+}
 
 function getFakeCallQueueGroups(count) {
     var groups = [];

@@ -4,6 +4,7 @@ import Icon from './../common/icons/Icon.jsx';
 import CallIcon from './../common/icons/CallIcon.jsx';
 import ExpansionPanel from './../common/ExpansionPanel.jsx';
 import createReactClass from 'create-react-class';
+import Utils from './../../utils/appUtils.js';
 
 export default createReactClass({
     render: function() {
@@ -89,13 +90,14 @@ export default createReactClass({
         function getFavouriteContactsListRightItems() {
             return getCallIconHtml();
         };
+
         function getCallsListLeftItems(call) {
-            var callIconName = [(call.isInternal ? 'internal' : 'external'), call.direction, 'call'].join('_');
+            const nameAndPhoneNumb = Utils.getCallOwnerNameAndPhoneNumb(call);
             return <React.Fragment>
                 <CallIcon callData={call}/>
                 <span className="text-container">
-                    <span>{call.surname + ' ' + call.name}</span><br/>
-                    <span className="phone-text gray-text">{call.phone}</span>
+                    <span>{nameAndPhoneNumb.name}</span><br/>
+                    <span className="phone-text gray-text">{nameAndPhoneNumb.number}</span>
                 </span>
             </React.Fragment>
         };

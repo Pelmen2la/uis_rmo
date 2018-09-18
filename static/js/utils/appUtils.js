@@ -20,11 +20,20 @@ function getArrayRandom(arr) {
     return arr[getRandomInt(0, arr.length - 1)];
 };
 
+function getCallOwnerNameAndPhoneNumb(callData) {
+    const isEmployeeCall = !!callData.employee_id;
+    return {
+        name: isEmployeeCall ? callData.employee_full_name : callData.contact_full_name,
+        number: isEmployeeCall ? callData.virtual_phone_number : callData.contact_phone_number
+    };
+};
+
 
 module.exports = {
     getRandomFloat: getRandomFloat,
     getRandomInt: getRandomInt,
     getListAverage: getListAverage,
     getArrayAverage: getArrayAverage,
-    getArrayRandom: getArrayRandom
+    getArrayRandom: getArrayRandom,
+    getCallOwnerNameAndPhoneNumb: getCallOwnerNameAndPhoneNumb
 };

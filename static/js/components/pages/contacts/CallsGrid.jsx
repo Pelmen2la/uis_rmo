@@ -2,6 +2,7 @@ import React from 'react';
 import SimpleGrid from './../../common/SimpleGrid.jsx'
 import Icon from './../../common/icons/Icon.jsx'
 import CallIcon from './../../common/icons/CallIcon.jsx'
+import Utils from './../../../utils/appUtils.js';
 
 class CallsGrid extends React.Component {
     render() {
@@ -35,10 +36,12 @@ class CallsGrid extends React.Component {
             {
                 dataIndex: 'name',
                 renderer: (rec, val, cellCfg) => {
+                    const nameAndPhoneNumb = Utils.getCallOwnerNameAndPhoneNumb(rec);
                     cellCfg.className = 'name-cell';
                     return <div>
-                        <b>{[rec.name, rec.phone].join(', ')}</b><br/>
-                        <span className="companyInfo">{[rec.companyName, rec.position].join(', ')}</span>
+                        <b>{[nameAndPhoneNumb.name, nameAndPhoneNumb.number].join(', ')}</b><br/>
+                        {rec.employee_id ?
+                            <span className="companyInfo">{[rec.companyName, rec.employeePosition].join(', ')}</span> : ''}
                     </div>
                 },
                 onCellClick: this.props.onNameCellClick

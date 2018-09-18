@@ -1,8 +1,7 @@
 import React from 'react';
 import CallIcon from './../common/icons/CallIcon.jsx';
 import Icon from './../common/icons/Icon.jsx';
-import StatusesDropdown from './../common/StatusesDropdown.jsx';
-import Logo from './../common/Logo.jsx';
+import Utils from './../../utils/appUtils.js';
 
 class IncomingCallsList extends React.Component {
     constructor(props) {
@@ -28,8 +27,9 @@ class IncomingCallsList extends React.Component {
                     is_internal: callData.is_internal,
                     status: 'successful'
                 },
+                nameAndPhoneNumb = Utils.getCallOwnerNameAndPhoneNumb(callData),
                 callId = callData.call_session_id,
-                splittedFullName = callData.employee_full_name.split(' ');
+                splittedFullName = nameAndPhoneNumb.name.split(' ');
 
             return <li key={callId}>
                 <div className="common-info-block">
