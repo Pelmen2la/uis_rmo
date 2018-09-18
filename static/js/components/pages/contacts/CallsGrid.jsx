@@ -36,7 +36,7 @@ class CallsGrid extends React.Component {
             {
                 dataIndex: 'name',
                 renderer: (rec, val, cellCfg) => {
-                    const nameAndPhoneNumb = Utils.getCallOwnerNameAndPhoneNumb(rec);
+                    const nameAndPhoneNumb = Utils.getCallPersonProps(rec);
                     cellCfg.className = 'name-cell';
                     return <div>
                         <b>{[nameAndPhoneNumb.name, nameAndPhoneNumb.number].join(', ')}</b><br/>
@@ -77,7 +77,8 @@ class CallsGrid extends React.Component {
                         <span className="date">{val.split('T')[0]}</span>
                         <span className="square-call-btn"></span>
                     </React.Fragment>
-                }
+                },
+                onCellClick: this.props.onNameCellClick
             }
         ]
     }

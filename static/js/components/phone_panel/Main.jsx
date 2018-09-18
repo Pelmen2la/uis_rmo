@@ -4,6 +4,7 @@ import Header from './Header.jsx';
 import ButtonsPanel from './ButtonsPanel.jsx';
 import CallButton from './CallButton.jsx';
 import TransferPanel from './TransferPanel.jsx';
+import {setLeftPanelStateProperty} from "../../action_creators";
 
 export default createReactClass({
     render: function() {
@@ -32,6 +33,13 @@ export default createReactClass({
             }
         };
         function onCallButtonClick() {
+            if(!stateObj.isInCall) {
+                var number = props.stateObj.phoneNumber;
+                fetch('/fake_data/get_number_info/' + number).then(function(response) {
+                    return response.json();
+                }).then(function(recentCallsList) {
+                })
+            }
             props.changeStateFn('isInCall', !stateObj.isInCall)
         };
         function getBody() {

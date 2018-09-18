@@ -2,11 +2,12 @@ var fs = require('fs'),
     utils = require('./../../static/js/utils/appUtils'),
     path = require('path');
 
-const contactsPageData = {
-    recentData: getFakeCalls(utils.getRandomInt(15, 20)),
-    contactsData: getFakeContacts(utils.getRandomInt(15, 20), 'employee'),
-    employeesData: getFakeContacts(utils.getRandomInt(15, 20), 'contact')
+var contactsPageData = {
+    contactsData: getFakeContacts(utils.getRandomInt(15, 20), 'contact'),
+    employeesData: getFakeContacts(utils.getRandomInt(15, 20), 'employee')
 };
+
+contactsPageData.recentData = getFakeCalls(utils.getRandomInt(15, 20), true);
 
 module.exports = function(app) {
     require('./socket')(app);
@@ -52,9 +53,15 @@ module.exports = function(app) {
     });
 
     app.get('/fake_data/get_contact/:id', function(req, res) {
-        var contact = contactsPageData.contactsData.find((c) => c.id = req.params.id);
-        contact.callsHistory = getFakeCalls(utils.getRandomInt(5, 10));
+        var contact = contactsPageData.contactsData.find((c) => c.id === req.params.id);
+        contact.callsHistory = getFakeCalls(utils.getRandomInt(5, 10), true);
         res.json(contact);
+    });
+
+    app.get('/fake_data/get_employee/:id', function(req, res) {
+        var employee = contactsPageData.employeesData.find((c) => c.id === req.params.id);
+        employee.callsHistory = getFakeCalls(utils.getRandomInt(5, 10), true);
+        res.json(employee);
     });
 
     app.get('/fake_data/get_number_info/:number', function(req, res) {
@@ -188,7 +195,7 @@ function getFakeContacts(count, type) {
 function getFakeFavoritesContacts(count) {
     var contacts = [];
     for(var i = 0; i < count; i++) {
-        var contactData = getFakePerson();
+        var contactData = utils.getArrayRandom(contactsPageData[flipCoin() ? 'contactsData' : 'employeesData']);
         contactData.isInCall = flipCoin() ? 'in_call' : 'not_in_call';
         contactData.status = utils.getArrayRandom(['ok', 'not_ok', 'unknown']);
         contacts.push(contactData);

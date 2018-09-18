@@ -11,7 +11,9 @@ export default createReactClass({
         return <div className="main-container">
             <LeftPanel
                 stateObj={props.leftPanelState}
-                changeStateFn={props.leftPanelChangeStateFn}/>
+                changeStateFn={props.leftPanelChangeStateFn}
+                openContactEditPageFn={props.openContactEditPageFn}
+            />
             <div className="main-content-container">
                 {getMainPageHtml(props.mainPageId)}
             </div>

@@ -3,6 +3,7 @@ import TabControl from './../common/TabControl.jsx'
 import BigTextField from './../common/BigTextField.jsx'
 import CallsGrid from './contacts/CallsGrid.jsx';
 import EmployeesGrid from './contacts/EmployeesGrid.jsx';
+import Utils from "../../utils/appUtils";
 
 class ContactsPage extends React.Component {
     componentDidMount() {
@@ -100,8 +101,9 @@ class ContactsPage extends React.Component {
     }
 
     onCallsGridNameCellClick(record) {
-        const props = this.props;
-        fetch('/fake_data/get_contact/' + record.id).then((r) => r.json()).then((contactData) => {
+        const props = this.props,
+            personProps = Utils.getCallPersonProps(record);
+        fetch('/fake_data/get_' + personProps.type + '/' + personProps.id).then((r) => r.json()).then((contactData) => {
             props.openContactEditPageFn(contactData);
         });
     }

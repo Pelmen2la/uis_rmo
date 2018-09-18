@@ -27,7 +27,7 @@ class IncomingCallsList extends React.Component {
                     is_internal: callData.is_internal,
                     status: 'successful'
                 },
-                nameAndPhoneNumb = Utils.getCallOwnerNameAndPhoneNumb(callData),
+                nameAndPhoneNumb = Utils.getCallPersonProps(callData),
                 callId = callData.call_session_id,
                 splittedFullName = nameAndPhoneNumb.name.split(' ');
 

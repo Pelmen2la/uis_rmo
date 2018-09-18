@@ -87,12 +87,12 @@ export default createReactClass({
                     </span>
                 </React.Fragment>
         };
-        function getFavouriteContactsListRightItems() {
-            return getCallIconHtml();
+        function getFavouriteContactsListRightItems(personData) {
+            return getCallIconCfg(personData.id, personData.type);
         };
 
         function getCallsListLeftItems(call) {
-            const nameAndPhoneNumb = Utils.getCallOwnerNameAndPhoneNumb(call);
+            const nameAndPhoneNumb = Utils.getCallPersonProps(call);
             return <React.Fragment>
                 <CallIcon callData={call}/>
                 <span className="text-container">
@@ -102,13 +102,26 @@ export default createReactClass({
             </React.Fragment>
         };
         function getCallsListRightItems(call) {
+            const personProps = Utils.getCallPersonProps(call);
             return <React.Fragment>
-                {getCallIconHtml()}
+                {getCallIconCfg(personProps.id, personProps.type)}
                 <span className="date-span">{call.date.split('T')[1].substring(0, 5)}</span>
             </React.Fragment>
         };
-        function getCallIconHtml() {
-            return <span className="square-call-btn"></span>
+
+        function getCallIconCfg(personId, personType) {
+            return <span
+                className="square-call-btn"
+                onClick={() => onCallButtonClick(personId, personType)}
+            />
+        };
+
+        function onCallButtonClick(personId, personType) {
+            fetch('/fake_data/get_' + personType + '/' + personId).then(function(response) {
+                return response.json();
+            }).then(function(personData) {
+                props.openContactEditPageFn(personData);
+            })
         };
     }
 });
