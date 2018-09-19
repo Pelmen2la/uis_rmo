@@ -12,6 +12,7 @@ export default createReactClass({
         const stateObj = props.stateObj;
         return <div className="main-page-container contact-edit-page">
             <ContactForm
+                setMainPageIdFn={props.setMainPageIdFn}
                 isEdit={stateObj.isEdit}
                 contactData={stateObj.contactData}
                 changeStateFn={props.changeStateFn}

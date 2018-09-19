@@ -20,7 +20,7 @@ export default createReactClass({
 
         function getHeader() {
             return <div className="contact-form-header">
-                <div className="back-btn">
+                <div className="back-btn" onClick={() => props.setMainPageIdFn('contact')}>
                     <Icon iconPath={'common/back_icon.png'}/>
                     <span>Контакты</span>
                 </div>

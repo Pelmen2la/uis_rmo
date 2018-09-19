@@ -25,6 +25,7 @@ const AppContainerClass = createReactClass({
                 contactsPageState={props.contactsPageState}
                 contactsPageChangeStateFn={props.setContactsPageStateProperty}
                 contactEditPageState={props.contactEditPageState}
+                setMainPageIdFn={props.setMainPageId}
                 openContactEditPageFn={props.openContactEditPage}
                 contactEditPageChangeStateFn={props.setContactsEditPageStateProperty}
                 phonePanelState={props.phonePanelState}

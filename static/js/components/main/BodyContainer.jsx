@@ -34,6 +34,7 @@ export default createReactClass({
             } else if(pageId === 'contactEdit') {
                 return <ContactEditPage
                     stateObj={props.contactEditPageState}
+                    setMainPageIdFn={props.setMainPageIdFn}
                     changeStateFn={props.contactEditPageChangeStateFn}
                 />
             } else {
