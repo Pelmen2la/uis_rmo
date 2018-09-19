@@ -35,17 +35,18 @@ store.dispatch(setState({
         },
         contactsPageState: {
             selectedTabName: 'recent',
-            recentGridState: {
+            recentTabState: {
                 data: [],
                 searchText: ''
             },
-            contactsGridState: {
+            contactsTabState: {
                 data: [],
                 searchText: ''
             },
-            employeesGridState: {
+            employeesTabState: {
                 data: [],
-                searchText: ''
+                searchText: '',
+                expandedGroupIds: []
             }
         },
         contactEditPageState: {
@@ -125,7 +126,7 @@ function loadContactsPageData() {
     fetch('/fake_data/contacts').then(function(response) {
         return response.json();
     }).then(function(contactsList) {
-        store.dispatch(setContactsPageStateProperty('recentGridState.data', contactsList));
+        store.dispatch(setContactsPageStateProperty('recentTabState.data', contactsList));
     })
 };
 

@@ -4,9 +4,10 @@ var fs = require('fs'),
 
 var contactsPageData = {
     contactsData: getFakeContacts(utils.getRandomInt(15, 20), 'contact'),
-    employeesData: getFakeContacts(utils.getRandomInt(15, 20), 'employee')
+    employeesGroups: getFakeEmployeesGroups(utils.getRandomInt(4, 7))
 };
 
+contactsPageData.employeesData = contactsPageData.employeesGroups.reduce((acc, next) => acc = acc.concat(next.employees), []);
 contactsPageData.recentData = getFakeCalls(utils.getRandomInt(15, 20), true);
 
 module.exports = function(app) {
@@ -34,9 +35,27 @@ module.exports = function(app) {
         res.json(getFakeFavoritesContacts(utils.getRandomInt(7, 12)));
     });
 
-    app.get('/fake_data/get_grid_data/:gridType', function(req, res) {
-        var data = contactsPageData[req.params.gridType + 'Data'],
+    app.get('/fake_data/get_contacts_page_tab_data/:tabType', function(req, res) {
+        var tabType = req.params.tabType,
             searchText = req.query.searchText;
+        if(tabType === 'employees') {
+            var groups = contactsPageData.employeesGroups;
+            groups = groups.map((g) => {
+                return {
+                    id: g.id,
+                    name: g.name,
+                    employees: filterPersonArrayData(g.employees, searchText)
+                }
+            });
+            groups = groups.filter((g) => g.employees.length);
+            res.json(groups);
+        } else {
+            var data = contactsPageData[req.params.tabType + 'Data'];
+            res.json(filterPersonArrayData(data, searchText));
+        }
+    });
+
+    function filterPersonArrayData(data, searchText) {
         if(searchText) {
             data = data.filter((rec) => {
                 const props = ['name', 'surname', 'email', 'phone', 'companyName'];
@@ -49,8 +68,8 @@ module.exports = function(app) {
                 return false;
             });
         }
-        res.json(data);
-    });
+        return data;
+    };
 
     app.get('/fake_data/get_contact/:id', function(req, res) {
         var contact = contactsPageData.contactsData.find((c) => c.id === req.params.id);
@@ -181,6 +200,18 @@ function getFakeCallQueueGroups(count) {
             id: getUid()
         };
         groups.push(group);
+    }
+    return groups;
+};
+
+function getFakeEmployeesGroups(count) {
+    var groups = [];
+    for(var i = 0; i < count; i++) {
+        groups.push({
+            id: getUid(),
+            name: 'Тестовая группа ' + i,
+            employees: getFakeContacts(utils.getRandomInt(15, 20), 'employee')
+        });
     }
     return groups;
 };
