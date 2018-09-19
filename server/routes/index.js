@@ -137,6 +137,8 @@ function getFakePerson(type) {
         phone: getRandomPhoneNumber(),
         position: utils.getArrayRandom(positions),
         companyName: utils.getArrayRandom(companyNames),
+        isInCall: flipCoin() ? 'in_call' : 'not_in_call',
+        status: utils.getArrayRandom(['ok', 'not_ok', 'unknown']),
         id: getUid()
     }
 };
@@ -234,8 +236,6 @@ function getFakeFavoritesContacts(count) {
     var contacts = [];
     for(var i = 0; i < count; i++) {
         var contactData = utils.getArrayRandom(contactsPageData[flipCoin() ? 'contactsData' : 'employeesData']);
-        contactData.isInCall = flipCoin() ? 'in_call' : 'not_in_call';
-        contactData.status = utils.getArrayRandom(['ok', 'not_ok', 'unknown']);
         contacts.push(contactData);
     }
     return contacts;

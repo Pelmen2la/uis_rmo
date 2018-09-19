@@ -6,6 +6,7 @@
 
     .body-container {
         height: calc(100% - 90px);
+        overflow: auto;
     }
 
     .phone-panel-header {

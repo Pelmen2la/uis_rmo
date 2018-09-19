@@ -31,7 +31,7 @@ store.dispatch(setState({
             callQueueGroups: [],
             expandedCallQueueGroupIds: [],
             recentCallListData: [],
-            favoriteContactListData: [],
+            favoriteContactListData: []
         },
         contactsPageState: {
             selectedTabName: 'recent',
@@ -57,7 +57,8 @@ store.dispatch(setState({
             phoneNumber: '',
             isInCall: false,
             customBodyType: '',
-            contactList: []
+            transferEmployeeGroupsData: [],
+            transferExpandedEmployeeGroupsIds: []
         },
         incomingCallsState: {
             callsData: []

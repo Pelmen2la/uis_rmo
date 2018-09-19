@@ -4,7 +4,6 @@ import Header from './Header.jsx';
 import ButtonsPanel from './ButtonsPanel.jsx';
 import CallButton from './CallButton.jsx';
 import TransferPanel from './TransferPanel.jsx';
-import {setLeftPanelStateProperty} from "../../action_creators";
 
 export default createReactClass({
     render: function() {
@@ -29,7 +28,11 @@ export default createReactClass({
             if(val == parseInt(val)) {
                 props.changeStateFn('phoneNumber', stateObj.phoneNumber.toString() + val.toString());
             } else if(val == 'transfer') {
-                props.changeStateFn('customBodyType', 'transfer');
+                fetch('/fake_data/get_contacts_page_tab_data/employees').then((r) => r.json()).then((employeeGroupsData) => {
+                    props.changeStateFn('transferEmployeeGroupsData', employeeGroupsData);
+                    props.changeStateFn('customBodyType', 'transfer');
+                });
+
             }
         };
         function onCallButtonClick() {
@@ -64,8 +67,24 @@ export default createReactClass({
                 />
             </React.Fragment>
         };
+
         function getTransferPanel() {
-            return <TransferPanel contactList={stateObj.contactList} />
+            var expandedGroupIds = stateObj.transferExpandedEmployeeGroupsIds;
+            const onGroupHeaderClick = function(groupId) {
+                const groupIdIndex = expandedGroupIds.indexOf(groupId);
+                if(groupIdIndex > -1) {
+                    expandedGroupIds.splice(groupIdIndex, 1);
+                } else {
+                    expandedGroupIds.push(groupId);
+                }
+                props.changeStateFn('transferExpandedEmployeeGroupsIds', expandedGroupIds);
+            };
+
+            return <TransferPanel
+                employeeGroups={stateObj.transferEmployeeGroupsData}
+                expandedGroupsIds={expandedGroupIds}
+                onGroupHeaderClick={onGroupHeaderClick}
+            />
         };
     }
 });
