@@ -156,7 +156,7 @@ class TagControl extends React.Component {
             } else if(boundRect.top < rowTopPosition) {
                 break
             }
-            lastRowItemsWidth += boundRect.width + rightMargin;
+            lastRowItemsWidth += Math.ceil(boundRect.width + rightMargin);
         }
         var inputWidth = tagsCnt.offsetWidth - lastRowItemsWidth;
         this.textInputRef.current.style.width = inputWidth > 100 ? inputWidth + 'px' : '100%';
