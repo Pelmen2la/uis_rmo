@@ -5,8 +5,7 @@ const appSocket = getAppSocket();
 export default appSocket;
 
 function getAppSocket() {
-    const socket = io('/ws/');
-    //const socket = io('http://localhost:8070');
+    const socket = io('http://localhost:8070');
 
     socket.on('connect', function() {
     });
