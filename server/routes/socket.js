@@ -1,4 +1,5 @@
-var io = require('socket.io').listen(8070),
+var io = require('socket.io').listen(80),
+    // io = require('socket.io').listen(8070),
     mainRoutesModule = require('./index'),
     utils = require('./../../static/js/utils/appUtils');
 
