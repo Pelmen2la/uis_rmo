@@ -6,6 +6,10 @@ module.exports = function(app) {
     io.sockets.on('connection', (socket) => {
     });
 
+    app.get('/get_test_call_data', function(req, res) {
+        res.json(getTestIncomingCallEventData());
+    });
+
     app.get('/send_test_call', function(req, res) {
         var sockets = io.sockets.connected;
         for(var key in sockets) {

@@ -6,6 +6,8 @@ import AwayWindow from './AwayWindow.jsx'
 import IncomingCallsList from './IncomingCallsList.jsx'
 import {connect} from 'react-redux';
 import * as actionCreators from './../../action_creators/index.js';
+import socket from './../../helpers/socket.js';
+import {setLeftPanelStateProperty} from "./../../action_creators/index";
 
 const AppContainerClass = createReactClass({
     render: function() {
@@ -33,6 +35,7 @@ const AppContainerClass = createReactClass({
             />
             {this.getAwayWindow()}
             {this.getIncomingCallContainer(props.incomingCallsState ? props.incomingCallsState.callsData : [])}
+            <img src="/resources/icons/common/not_in_call_icon.png" className="create-fake-call-icon" onClick={onCreateFakeCallIconClick}/>
         </React.Fragment>
     },
 
@@ -59,7 +62,6 @@ const AppContainerClass = createReactClass({
     }
 });
 
-
 function mapStateToProps(state) {
     return {
         mainPageId: getStateString(state, 'mainPageId'),
@@ -78,6 +80,12 @@ function getStateString(state, propName) {
 
 function getStateToJsObj(state, propName) {
     return state ? state.get(propName).toJS() : state;
+}
+
+function onCreateFakeCallIconClick() {
+    fetch('/get_test_call_data').then((r) => r.json()).then(function(callEventData) {
+        socket.listeners('event')[0](callEventData);
+    });
 }
 
 export const AppContainer = connect(mapStateToProps, actionCreators)(AppContainerClass);
