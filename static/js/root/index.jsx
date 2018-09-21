@@ -67,7 +67,6 @@ store.dispatch(setState({
 );
 
 socket.on('event', function(eventProps) {
-    debugger;
     if(eventProps.name === 'call_proceeding') {
         var callData = eventProps.data,
             callsData = store.getState().toJS().incomingCallsState.callsData;
